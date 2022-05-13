@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { ServicioService } from './service/servicio.service';
 
 @Component({
   selector: 'app-root',
@@ -6,9 +8,18 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'dashboard';
-  logme()
-  {
-    console.log('testing');
+  ngOnInit(): void {
+    this.servicioService.getPosts().subscribe(post => {
+      this.posts = post;
+    });
   }
+  
+  
+  readonly ROOT_URL ='http://localhost:3000/api/global-form/default'
+
+  posts: PostResponse;
+
+  constructor(private servicioService:ServicioService){
+    }
+
 }
