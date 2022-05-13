@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ServicioService } from './service/servicio.service';
+import { PostResponse } from './interfaces/post.interface';
 
 @Component({
   selector: 'app-root',
@@ -13,11 +14,11 @@ export class AppComponent {
       this.posts = post;
     });
   }
-  
-  
+
+
   readonly ROOT_URL ='http://localhost:3000/api/global-form/default'
 
-  posts: PostResponse;
+  posts!: PostResponse;
 
   constructor(private servicioService:ServicioService){
     }
