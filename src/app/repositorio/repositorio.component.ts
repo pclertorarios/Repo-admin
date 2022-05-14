@@ -31,9 +31,4 @@ export class RepositorioComponent implements OnInit {
       });
   }
 
-  navigate(url: string) {
-    this.router.navigateByUrl(url);
-  }
-
-
 }

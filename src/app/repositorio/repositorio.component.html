@@ -9,10 +9,10 @@
     <!-- Main Content -->
     <!-- Panel Category -->
     <mat-accordion>
-      <ng-container *ngIf="files.length > 0; else noFiles">
+      <ng-container *ngIf="files; else noFiles">
         <ng-container *ngFor="let category of categories">
           <mat-expansion-panel (opened)="panelCategoryState = true"
-          (closed)="panelCategoryState = false">
+                               (closed)="panelCategoryState = false">
 
             <mat-expansion-panel-header>
               <mat-panel-title> {{ category }} </mat-panel-title>
@@ -25,7 +25,7 @@
                <ng-container *ngFor="let file of files">
                   <ng-container *ngIf="file.category === category">
                     <mat-list-item role="listitem">
-                      <a (click)="navigate(file.link)" target="_blank">{{ file.name }}</a>
+                      <a [href]="file.link" target="_blank">{{ file.name }}</a>
                     </mat-list-item>
                   </ng-container>
                 </ng-container>
