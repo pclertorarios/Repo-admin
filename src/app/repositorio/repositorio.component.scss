@@ -1,4 +1,49 @@
+html {
+  box-sizing: border-box;
+  font-size: 62.5%; /* 1 rem = 10px */
+}
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+mat-expansion-panel {
+  background-color: #3C0D77;
+  color: white;
+  border-color: #D05FDA;
+}
+
+mat-panel-title {
+  color: #99EFD0;
+}
+
+.mat-expansion-indicator {
+  color: white;
+}
+
+#add {
+  color: #62B01E;
+}
+
+#remove {
+  color: #FF0000;
+}
+
+.container {
+  width: min(90%, 150rem);;
+  margin: 0 auto;
+}
+
+.icon_container {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.icon_container mat-icon {
+  padding-right: .8rem;
+}
+
 a {
-  color: black;
+  color: white;
   text-decoration: none;
 }
