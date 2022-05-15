@@ -13,13 +13,12 @@ export class ServicioService {
 
   constructor(private http: HttpClient){}
 
-  
+
 
   getPosts(){
 
-    const url: string = `${this.files}/files`;
-    
-    return this.http.get<PostResponse>(url)
+    const url: string = `${this.files}`;
 
+    return this.http.get<PostResponse>(url);
   }
 }

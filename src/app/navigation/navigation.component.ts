@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { PostResponse } from '../interfaces/post.interface'; 
+import { Category, Control, PostResponse, Subcategory } from '../interfaces/post.interface';
 import { HttpClient } from '@angular/common/http';
 import { ServicioService } from '../service/servicio.service';
 
@@ -11,24 +11,31 @@ import { ServicioService } from '../service/servicio.service';
 })
 export class NavigationComponent implements OnInit{
 
-  files!: PostResponse[];
-  categories: string[] = [];
+  files!: PostResponse;
+  categories: Category[] = [];
+  subCategories: Subcategory[] = [];
+  controls: Control[] = [];
+
   panelMainState = false;
   panelCategoryState = false;
 
-
-
   constructor(private servicioService: ServicioService, private router:Router) {}
+
   ngOnInit(): void {
     this.servicioService.getPosts()
     .subscribe( files => {
       this.files = files;
-      this.files.forEach(file => {
-        if (!this.categories.includes(file.category)) {
-          this.categories.push(file.category);
-        }
+      files.categories.forEach(category => {
+        this.categories.push(category);
+        category.subcategories.forEach(subcategory => {
+          this.subCategories.push(subcategory);
+          subcategory.controls.forEach(control => {
+            this.controls.push(control);
+          });
+        });
       });
+      console.log(this.files, this.categories, this.subCategories, this.controls);
     });
-}
+  }
 
 }
