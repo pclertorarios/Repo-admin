@@ -18,6 +18,8 @@ export class NavigationComponent implements OnInit{
 
   panelMainState = false;
   panelCategoryState = false;
+  panelSubCategoryState = false;
+  panelCaontrolState = false;
 
   constructor(private servicioService: ServicioService, private router:Router) {}
 
