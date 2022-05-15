@@ -60,7 +60,8 @@ export class DialogComponent implements OnInit {
     this.newFile.category = this.data.category;
 
     this.repositoryService.createFile(this.newFile)
-      .subscribe( console.log );
+      .subscribe();
+    this.newFile = { name: '', category: '', link: '' };
     this.myForm.reset();
     this.dialogRef.close();
   }
