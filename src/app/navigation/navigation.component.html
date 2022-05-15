@@ -22,53 +22,6 @@
       </button>
     </mat-toolbar>
     <mat-accordion>
-      <mat-expansion-panel (opened)="panelMainState = true"
-                           (closed)="panelMainState = false">
-        <mat-expansion-panel-header>
-          <mat-panel-title> Repositorio </mat-panel-title>
-        </mat-expansion-panel-header>
-        <!-- Main Content -->
-        <!-- Panel Category -->
-        <mat-accordion>
-          <ng-container *ngIf="files; else noFiles">
-            <ng-container *ngFor="let category of categories">
-              <mat-expansion-panel (opened)="panelCategoryState = true"
-                                   (closed)="panelCategoryState = false">
-    
-                <mat-expansion-panel-header>
-                  <mat-panel-title> {{ category }} </mat-panel-title>
-                </mat-expansion-panel-header>
-    
-                <!-- Category Content-->
-                <!-- Links -->
-                <ng-container *ngIf=".length > 0; else noElements">
-                  <mat-list role="list">
-                   <ng-container *ngFor="let file of files
-                      <ng-container *ngIf=".category === category">
-                        <mat-list-item role="listitem">
-                          <a [href]="file.link" target="_blank">{{ file.name }}</a>
-                        </mat-list-item>
-                      </ng-container>
-                    </ng-container>
-                  </mat-list>
-                </ng-container>
-    
-                <ng-template #noElements>
-                  This category has no items
-                </ng-template>
-    
-              </mat-expansion-panel>
-            </ng-container>
-          </ng-container>
-    
-          <ng-template #noFiles>
-            No files exist
-          </ng-template>
-    
-        </mat-accordion>
-        <!-- !Panel Category -->
-    
-      </mat-expansion-panel>
     </mat-accordion>
   </mat-sidenav-content>
 </mat-sidenav-container>
