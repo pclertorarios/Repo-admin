@@ -33,9 +33,12 @@ export class RepositorioComponent implements OnInit {
       });
   }
 
-  addNewFile() {
+  addNewFile(category: string) {
     this.dialog.open( DialogComponent, {
-      width: '50rem'
+      width: '50rem',
+      data: {
+        category: category
+      }
     } );
   }
 

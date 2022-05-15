@@ -1,18 +1,38 @@
-<div>
-  <h1>Agregar Nuevo File</h1>
-  <br>
-  <p>Complete todos los campos</p>
-  <hr>
 
-  <form>
-    <div class="container">
-      <label>Nombre</label>
-      <input type="text" placeholder="Nombre del File">
-      <br>
-      <label>Link</label>
-      <input type="text">
-    </div>
-  </form>
-</div>
+<h1>Agregar Nuevo File</h1>
+<br>
+<p>Complete todos los campos</p>
+<hr>
+
+<form (ngSubmit)="addFile()"
+      autocomplete="off"
+      [formGroup]="myForm">
+
+  <mat-form-field appearance="fill">
+    <mat-label>Ingrese el nombre</mat-label>
+    <input matInput formControlName="name">
+    <mat-error *ngIf="fieldIsValid('name')">Debe ser de 1 letra</mat-error>
+  </mat-form-field>
+
+  <br>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Ingrese el Link</mat-label>
+    <input matInput formControlName="link">
+    <mat-error *ngIf="fieldIsValid('link')">Debe de ser de 3 letras</mat-error>
+  </mat-form-field>
+
+  <div class="container">
+    <button mat-button
+            color="primary"
+            type="submit">
+      Agregar
+    </button>
+    <button mat-button
+            color="primary"
+            (click)="closeDialog()">Cancelar</button>
+  </div>
+</form>
+
 
 
