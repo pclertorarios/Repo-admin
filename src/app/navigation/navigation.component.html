@@ -41,10 +41,10 @@
     
                 <!-- Category Content-->
                 <!-- Links -->
-                <ng-container *ngIf="files.length > 0; else noElements">
+                <ng-container *ngIf=".length > 0; else noElements">
                   <mat-list role="list">
-                   <ng-container *ngFor="let file of files">
-                      <ng-container *ngIf="file.category === category">
+                   <ng-container *ngFor="let file of files
+                      <ng-container *ngIf=".category === category">
                         <mat-list-item role="listitem">
                           <a [href]="file.link" target="_blank">{{ file.name }}</a>
                         </mat-list-item>

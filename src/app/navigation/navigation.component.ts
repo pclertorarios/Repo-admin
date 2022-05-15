@@ -20,13 +20,15 @@ export class NavigationComponent implements OnInit{
 
   constructor(private servicioService: ServicioService, private router:Router) {}
   ngOnInit(): void {
-    this.servicioService.getRepositories()
-      .subscribe( files => {
-        this.files = files;
-        this.files.forEach(file => {
-       
-        });
+    this.servicioService.getPosts()
+    .subscribe( files => {
+      this.files = files;
+      this.files.forEach(file => {
+        if (!this.categories.includes(file.category)) {
+          this.categories.push(file.category);
+        }
       });
-  }
+    });
+}
 
 }

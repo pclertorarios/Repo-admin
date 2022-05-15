@@ -7,7 +7,7 @@ import { PostResponse } from '../interfaces/post.interface';
 })
 export class ServicioService {
 
-  readonly ROOT_URL ='http://localhost:3000/api/global-form/default'
+  private files ='http://localhost:3000/api/global-form/default'
 
 
 
@@ -17,7 +17,7 @@ export class ServicioService {
 
   getPosts(){
 
-    const url: string = `${ this.ROOT_URL }`;
+    const url: string = `${this.files}/files`;
     
     return this.http.get<PostResponse>(url)
 
