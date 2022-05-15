@@ -12,6 +12,7 @@ export interface Category {
 
 export interface Subcategory {
     name:     string;
+    shortName: string;
     controls: Control[];
 }
 
