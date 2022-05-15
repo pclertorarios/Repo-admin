@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
+import { ReactiveFormsModule } from '@angular/forms';
+
 import { MaterialModule } from './material/material.module';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -20,6 +22,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { RepositorioComponent } from './repositorio/repositorio.component';
 import { AdminUserComponent } from './admin-user/admin-user.component';
 import { HttpClientModule } from '@angular/common/http';
+import { DialogComponent } from './components/dialog/dialog.component';
 
 @NgModule({
   declarations: [
@@ -28,12 +31,14 @@ import { HttpClientModule } from '@angular/common/http';
     DashboardComponent,
     RepositorioComponent,
     AdminUserComponent,
+    DialogComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     LayoutModule,
+    ReactiveFormsModule,
     MaterialModule,
     MatToolbarModule,
     MatButtonModule,

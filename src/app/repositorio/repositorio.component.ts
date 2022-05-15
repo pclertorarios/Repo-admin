@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { RepositoryService } from '../service/repository.service';
 import { RepositoryResponse } from '../interfaces/repository.interface';
-import { Router } from '@angular/router';
+
+import { MatDialog } from '@angular/material/dialog';
+import { DialogComponent } from '../components/dialog/dialog.component';
 
 
 @Component({
@@ -17,7 +19,7 @@ export class RepositorioComponent implements OnInit {
   panelCategoryState = false;
 
   constructor( private repositoryService: RepositoryService,
-               private router: Router ) { }
+               public dialog: MatDialog ) { }
 
   ngOnInit(): void {
     this.repositoryService.getRepositories()
@@ -29,6 +31,12 @@ export class RepositorioComponent implements OnInit {
           }
         });
       });
+  }
+
+  addNewFile() {
+    this.dialog.open( DialogComponent, {
+      width: '50rem'
+    } );
   }
 
 }

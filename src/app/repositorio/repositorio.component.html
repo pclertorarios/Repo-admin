@@ -20,7 +20,12 @@
             <mat-expansion-panel-header>
               <mat-panel-title> {{ category }} </mat-panel-title>
               <div class="icon_container">
-                <mat-icon id="add" aria-hidden="false" aria-label="Example home icon">add</mat-icon>
+                <mat-icon id="add"
+                          aria-hidden="false"
+                          aria-label="Example home icon"
+                          (click)="addNewFile()">
+                  add
+                </mat-icon>
               </div>
             </mat-expansion-panel-header>
 
