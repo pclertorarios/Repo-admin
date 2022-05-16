@@ -1,7 +1,16 @@
-<mat-divider>
-    <mat-select>
-    <mat-option *ngFor="let user of users" [value]="user.id">
-      {{user.name + user.lastName}}
-    </mat-option>
-  </mat-select>
-</mat-divider>
+<div class="fondo">
+  <h2>Administrar usuarios</h2>
+  <div class="fondo2">
+    <p style="left: 100px;top: 70px; z-index: 1">USUARIOS</p>
+    <mat-form-field class="combobox">
+      <mat-select [(value)]="selected">
+        <mat-option *ngFor="let user of usersA" [value]="user.id">
+          {{user.name + user.lastName}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <button mat-raised-button style="left: 850px; top: 60px" (click)="openEditDialog()">EDITAR</button>
+    <button mat-raised-button style="left: 1100px; top: 60px" (click) = "eliminarUsuario(selected)">ELIMINAR</button>
+  </div>
+</div>
+

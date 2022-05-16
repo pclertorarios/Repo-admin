@@ -22,6 +22,6 @@ export class AppComponent {
 
   constructor(private servicioService:ServicioService){
   }
-
+  title = 'dashboard'
 
 }

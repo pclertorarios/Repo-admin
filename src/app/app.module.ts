@@ -20,6 +20,11 @@ import { AdminUserComponent } from './admin-user/admin-user.component';
 import { HttpClientModule } from '@angular/common/http';
 import {MatSelectModule} from "@angular/material/select";
 import {MatTableModule} from "@angular/material/table";
+import {MatButtonToggleModule} from "@angular/material/button-toggle";
+import { EditUserComponent } from './dialogs/edit-user/edit-user.component';
+import {MatDialogModule} from "@angular/material/dialog";
+import {MatInputModule} from "@angular/material/input";
+import {FormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -27,7 +32,8 @@ import {MatTableModule} from "@angular/material/table";
     NavigationComponent,
     DashboardComponent,
     RepositorioComponent,
-    AdminUserComponent
+    AdminUserComponent,
+    EditUserComponent
   ],
   imports: [
     BrowserModule,
@@ -44,7 +50,11 @@ import {MatTableModule} from "@angular/material/table";
     MatMenuModule,
     HttpClientModule,
     MatSelectModule,
-    MatTableModule
+    MatTableModule,
+    MatButtonToggleModule,
+    MatDialogModule,
+    MatInputModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
