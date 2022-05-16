@@ -6,8 +6,13 @@
                         (closed)="panelMainState = false">
     <mat-expansion-panel-header>
       <mat-panel-title> Repositorio </mat-panel-title>
-      <!-- <mat-panel-description> -->
-      <!-- </mat-panel-description> -->
+      <mat-icon class="add"
+                style="margin-right: .8rem;"
+                aria-hidden="false"
+                aria-label="Example home icon"
+                (click)="addNewRepositoryFile()">
+                add
+      </mat-icon>
     </mat-expansion-panel-header>
     <!-- Main Content -->
     <!-- Panel Category -->
@@ -20,7 +25,7 @@
             <mat-expansion-panel-header>
               <mat-panel-title> {{ category }} </mat-panel-title>
               <div class="icon_container">
-                <mat-icon id="add"
+                <mat-icon class="add"
                           aria-hidden="false"
                           aria-label="Example home icon"
                           (click)="addNewFile(category)">
@@ -36,8 +41,16 @@
                 <ng-container *ngFor="let file of files">
                   <ng-container *ngIf="file.category === category">
                     <mat-list-item role="listitem">
-                      <a [href]="file.link" target="_blank">{{ file.name }}</a>
-                      <mat-icon id="remove" aria-hidden="false" aria-label="Example home icon">remove</mat-icon>
+                      <div class="container_flex">
+                        <a [href]="file.link" target="_blank">{{ file.name }}</a>
+                        <mat-icon id="remove"
+                                  aria-hidden="false"
+                                  aria-label="Example home icon"
+                                  (click)="deleteFile(file)"
+                                  style="cursor: pointer;">
+                          remove
+                        </mat-icon>
+                      </div>
                     </mat-list-item>
                   </ng-container>
                 </ng-container>

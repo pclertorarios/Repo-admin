@@ -19,6 +19,12 @@ export class RepositoryService {
   }
 
   createFile(file: RepositoryResponse) {
-    return this.http.post<RepositoryResponse>(`${ this.baseUrl }/files`, file);
+    const url: string = `${ this.baseUrl }/files`;
+    return this.http.post<RepositoryResponse>(url, file);
+  }
+
+  deleteFile(fileId: string) {
+    const url: string = `${ this.baseUrl }/files/${ fileId }`;
+    return this.http.delete<any>(url);
   }
 }

@@ -20,7 +20,7 @@ mat-panel-title {
   color: white;
 }
 
-#add {
+.add {
   color: #62B01E;
 }
 
@@ -31,6 +31,12 @@ mat-panel-title {
 .container {
   width: min(90%, 150rem);;
   margin: 0 auto;
+}
+
+.container_flex {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
 }
 
 .icon_container {

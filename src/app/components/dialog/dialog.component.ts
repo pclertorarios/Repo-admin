@@ -26,7 +26,8 @@ export class DialogComponent implements OnInit {
   newFile: RepositoryResponse = { name: '', category: '', link: '' };
   myForm: FormGroup = this.fb.group({
     name: [ , [ Validators.required, Validators.minLength(1) ] ],
-    link: [ , [ Validators.required, Validators.minLength(3) ]]
+    link: [ , [ Validators.required, Validators.minLength(3) ]],
+    category: [ , [ Validators.required, Validators.minLength(1) ]]
   });
 
   constructor( private repositoryService: RepositoryService,
@@ -35,9 +36,11 @@ export class DialogComponent implements OnInit {
                @Inject(MAT_DIALOG_DATA) public data: any ) {}
 
   ngOnInit(): void {
+    const category: string = this.data.withCategory ? 'zzz' : '';
     this.myForm.reset({
       name: '',
-      link: ''
+      link: '',
+      category
     });
   }
 
@@ -50,6 +53,10 @@ export class DialogComponent implements OnInit {
     this.dialogRef.close();
   }
 
+  isRepositoryFile(): boolean {
+    return this.data.withCategory;
+  }
+
   addFile() {
     if ( this.myForm.invalid ) {
       this.myForm.markAllAsTouched();
@@ -57,10 +64,15 @@ export class DialogComponent implements OnInit {
     }
     this.newFile.name = this.myForm.value['name'];
     this.newFile.link = this.myForm.value['link'];
+
+    if(!this.isRepositoryFile) {
+      this.newFile.category = this.myForm.value['category'];
+    }
     this.newFile.category = this.data.category;
 
     this.repositoryService.createFile(this.newFile)
       .subscribe();
+
     this.newFile = { name: '', category: '', link: '' };
     this.myForm.reset();
     this.dialogRef.close();

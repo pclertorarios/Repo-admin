@@ -18,6 +18,10 @@ export class RepositorioComponent implements OnInit {
   panelMainState = false;
   panelCategoryState = false;
 
+  private getFileId(file: RepositoryResponse) {
+    return file._id;
+  }
+
   constructor( private repositoryService: RepositoryService,
                public dialog: MatDialog ) { }
 
@@ -33,13 +37,30 @@ export class RepositorioComponent implements OnInit {
       });
   }
 
+  addNewRepositoryFile() {
+    this.dialog.open( DialogComponent, {
+      width: '50rem',
+      data: {
+        withCategory: false,
+        category: { name: '', category: '', link: '' }
+      }
+    });
+  }
+
   addNewFile(category: string) {
     this.dialog.open( DialogComponent, {
       width: '50rem',
       data: {
+        withCategory: true,
         category: category
       }
     } );
+  }
+
+  deleteFile(file: RepositoryResponse) {
+    const fileId = this.getFileId(file) || '';
+    this.repositoryService.deleteFile(fileId)
+      .subscribe();
   }
 
 }

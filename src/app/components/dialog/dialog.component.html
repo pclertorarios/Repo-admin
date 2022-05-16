@@ -8,6 +8,15 @@
       autocomplete="off"
       [formGroup]="myForm">
 
+  <ng-container *ngIf="!isRepositoryFile()">
+    <mat-form-field appearance="fill">
+      <mat-label>Ingrese la categoría</mat-label>
+      <input matInput formControlName="category">
+      <mat-error *ngIf="fieldIsValid('category')">Debe ser de 1 letra</mat-error>
+    </mat-form-field>
+  </ng-container>
+
+
   <mat-form-field appearance="fill">
     <mat-label>Ingrese el nombre</mat-label>
     <input matInput formControlName="name">
