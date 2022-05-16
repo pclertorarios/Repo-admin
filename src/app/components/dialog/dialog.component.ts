@@ -40,7 +40,7 @@ export class DialogComponent implements OnInit {
     this.myForm.reset({
       name: '',
       link: '',
-      category
+      category: category
     });
   }
 
@@ -65,10 +65,11 @@ export class DialogComponent implements OnInit {
     this.newFile.name = this.myForm.value['name'];
     this.newFile.link = this.myForm.value['link'];
 
-    if(!this.isRepositoryFile) {
+    if(!this.isRepositoryFile()) {
       this.newFile.category = this.myForm.value['category'];
+    } else {
+      this.newFile.category = this.data.category;
     }
-    this.newFile.category = this.data.category;
 
     this.repositoryService.createFile(this.newFile)
       .subscribe();
