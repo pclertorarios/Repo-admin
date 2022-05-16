@@ -9,7 +9,6 @@ import { PostResponse } from './interfaces/post.interface';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'dashboard';
   ngOnInit(): void {
     this.servicioService.getPosts().subscribe(post => {
       this.posts = post;
