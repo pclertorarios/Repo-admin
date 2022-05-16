@@ -1,3 +1,7 @@
 <mat-divider>
-  <p>Hola</p>
+    <mat-select>
+    <mat-option *ngFor="let user of users" [value]="user.id">
+      {{user.name}}
+    </mat-option>
+  </mat-select>
 </mat-divider>

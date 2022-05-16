@@ -18,6 +18,8 @@ import { MatMenuModule } from '@angular/material/menu';
 import { RepositorioComponent } from './repositorio/repositorio.component';
 import { AdminUserComponent } from './admin-user/admin-user.component';
 import { HttpClientModule } from '@angular/common/http';
+import {MatSelectModule} from "@angular/material/select";
+import {MatTableModule} from "@angular/material/table";
 
 @NgModule({
   declarations: [
@@ -40,7 +42,9 @@ import { HttpClientModule } from '@angular/common/http';
     MatGridListModule,
     MatCardModule,
     MatMenuModule,
-    HttpClientModule
+    HttpClientModule,
+    MatSelectModule,
+    MatTableModule
   ],
   providers: [],
   bootstrap: [AppComponent]
