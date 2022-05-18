@@ -1,8 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Inject, OnInit} from '@angular/core';
 import {UserInterface} from "../models/User.interface";
 import {UsersService} from "../service/users-api.service";
 import {MatDialog} from "@angular/material/dialog";
 import {EditUserComponent} from "../dialogs/edit-user/edit-user.component";
+import {NgForm} from "@angular/forms";
+import {UpdateUserInterface} from "../models/UpdateUser.interface";
 
 @Component({
   selector: 'app-admin-user',
@@ -22,6 +24,8 @@ export class AdminUserComponent implements OnInit {
   constructor(private userService: UsersService,
               public dialog: MatDialog) {
     this.userService.getUserById(this.selected).subscribe(response=>this.userSelected = response);
+
+
   }
   ngOnInit(): void {
     this.userService.getUsers()

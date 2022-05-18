@@ -1,49 +1,52 @@
-<h1 mat-dialog-title>Editar Usuario</h1>
+<div>
+  <h1 mat-dialog-title class="text-center" style="color: #3C0D77">Editar Usuario</h1>
+  <form autocomplete="off" (ngSubmit)="updateProfile(editNgEditUser)" #editNgEditUser="ngForm">
+    <div class="flex flex-col justify-around mb-2">
+      <mat-form-field>
+        <input matInput name="name"
+               type="text"
+               placeholder="Nombre"
+               [ngModel]="data?.name"
+               #name="ngModel"
+        >
+      </mat-form-field>
+      <mat-form-field >
+        <input matInput name="lastName"
+               type="text"
+               placeholder="Apellidos"
+               [ngModel]="data?.lastName"
+               #lastName="ngModel"
+        >
+      </mat-form-field>
+      <mat-form-field >
+        <input matInput name="email"
+               type="text"
+               placeholder="Correo Electrónico"
+               [ngModel]="data?.email"
+               #email="ngModel"
+        >
+      </mat-form-field>
+      <mat-form-field >
+        <input matInput name="password"
+               type="password"
+               placeholder="Contraseña"
+               [ngModel]="data?.password"
+               #password="ngModel"
+        >
+      </mat-form-field>
+      <mat-form-field >
+        <input matInput name="phone"
+               type="text"
+               placeholder="Teléfono"
+               [ngModel]="data?.phone"
+               #phone="ngModel"
+        >
+      </mat-form-field>
+    </div>
+    <div class="text-center">
+      <button class="px-6 py-2 text-white rounded-full" type="submit" style="background: #F2994A; margin: 15px" mat-button>Aceptar</button>
+      <button class="px-6 py-2 text-white rounded-full" (click)="onNoClick()" style="background: #F2994A; margin: 15px" mat-button>Cancelar</button>
+    </div>
+  </form>
+</div>
 
-<form autocomplete="off" (ngSubmit)="updateProfile(editNgEditUser)" #editNgEditUser="ngForm")>
-  <div class="flex flex-col justify-around mb-2">
-    <mat-form-field >
-      <input matInput name="nombre"
-             type="text"
-             placeholder="Nombre"
-             [ngModel]="data?.name"
-             #name="ngModel"
-      >
-    </mat-form-field>
-    <mat-form-field >
-      <input matInput name="apellidos"
-             type="text"
-             placeholder="Apellidos"
-             [ngModel]="data?.lastName"
-             #lastName="ngModel"
-      >
-    </mat-form-field>
-    <mat-form-field >
-      <input matInput name="correo electrónico"
-             type="text"
-             placeholder="Correo Electrónico"
-             [ngModel]="data?.email"
-             #email="ngModel"
-      >
-    </mat-form-field>
-    <mat-form-field >
-      <input matInput name="contraseña"
-             type="password"
-             placeholder="Contraseña"
-             [ngModel]="data?.password"
-             #password="ngModel"
-      >
-    </mat-form-field>
-    <mat-form-field >
-      <input matInput name="teléfono"
-             type="text"
-             placeholder="Teléfono"
-             [ngModel]="data?.phone"
-             #phone="ngModel"
-      >
-    </mat-form-field>
-  </div>
-  <div class="text-center">
-    <button class="px-6 py-2 bg-purple-500 text-white rounded-full" type="submit" mat-button>Aceptar</button>
-  </div>
-</form>

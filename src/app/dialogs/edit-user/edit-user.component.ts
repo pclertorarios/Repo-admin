@@ -1,6 +1,6 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {UpdateUserInterface} from "../../models/UpdateUser.interface";
-import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from "@angular/material/dialog";
+import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
 import {UsersService} from "../../service/users-api.service";
 import { NgForm } from '@angular/forms';
 
@@ -12,6 +12,7 @@ import { NgForm } from '@angular/forms';
 export class EditUserComponent implements OnInit {
 
   editProfile: UpdateUserInterface | undefined;
+  someValue: boolean = false;
 
   constructor(
     public dialogRef: MatDialogRef<EditUserComponent>,
@@ -25,9 +26,11 @@ export class EditUserComponent implements OnInit {
   updateProfile(form: NgForm){
     const updateData: UpdateUserInterface = form.value;
     console.log(updateData);
-    this.userService.updateUser(this.data.id, updateData).subscribe(resp =>{
-      this.dialogRef.close()
-    });
+    this.userService.updateUser(this.data.id, updateData);
+    this.dialogRef.close();
+  }
+  onNoClick(): void{
+    this.dialogRef.close(this.someValue);
   }
 
 }

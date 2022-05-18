@@ -17,14 +17,16 @@ import { MatCardModule } from '@angular/material/card';
 import { MatMenuModule } from '@angular/material/menu';
 import { RepositorioComponent } from './repositorio/repositorio.component';
 import { AdminUserComponent } from './admin-user/admin-user.component';
-import { HttpClientModule } from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {MatSelectModule} from "@angular/material/select";
 import {MatTableModule} from "@angular/material/table";
 import {MatButtonToggleModule} from "@angular/material/button-toggle";
 import { EditUserComponent } from './dialogs/edit-user/edit-user.component';
-import {MatDialogModule} from "@angular/material/dialog";
+import {MAT_DIALOG_DATA, MatDialogModule, MatDialogRef} from "@angular/material/dialog";
 import {MatInputModule} from "@angular/material/input";
-import {FormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {MatFormFieldModule} from "@angular/material/form-field";
+
 
 @NgModule({
   declarations: [
@@ -33,9 +35,11 @@ import {FormsModule} from "@angular/forms";
     DashboardComponent,
     RepositorioComponent,
     AdminUserComponent,
-    EditUserComponent
+    EditUserComponent,
   ],
   imports: [
+    ReactiveFormsModule,
+    MatFormFieldModule,
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
@@ -54,9 +58,15 @@ import {FormsModule} from "@angular/forms";
     MatButtonToggleModule,
     MatDialogModule,
     MatInputModule,
-    FormsModule
+    FormsModule,
   ],
-  providers: [],
+  providers: [{
+    provide: MAT_DIALOG_DATA,
+    useValue: {}
+  },{
+    provide: MatDialogRef,
+    useValue: {}
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
