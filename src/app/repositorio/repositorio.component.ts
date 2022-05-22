@@ -1,4 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { RepositoryService } from '../service/repository.service';
+import { RepositoryResponse } from '../interfaces/repository.interface';
+
+import { MatDialog } from '@angular/material/dialog';
+import { DialogComponent } from '../components/dialog/dialog.component';
+
 
 @Component({
   selector: 'app-repositorio',
@@ -7,9 +13,54 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RepositorioComponent implements OnInit {
 
-  constructor() { }
+  files!: RepositoryResponse[];
+  categories: string[] = [];
+  panelMainState = false;
+  panelCategoryState = false;
+
+  private getFileId(file: RepositoryResponse) {
+    return file._id;
+  }
+
+  constructor( private repositoryService: RepositoryService,
+               public dialog: MatDialog ) { }
 
   ngOnInit(): void {
+    this.repositoryService.getRepositories()
+      .subscribe( files => {
+        this.files = files;
+        this.files.forEach(file => {
+          if (!this.categories.includes(file.category)) {
+            this.categories.push(file.category);
+          }
+        });
+      });
+  }
+
+  addNewRepositoryFile() {
+    this.dialog.open( DialogComponent, {
+      width: '50rem',
+      data: {
+        withCategory: false,
+        category: { name: '', category: '', link: '' }
+      }
+    });
+  }
+
+  addNewFile(category: string) {
+    this.dialog.open( DialogComponent, {
+      width: '50rem',
+      data: {
+        withCategory: true,
+        category: category
+      }
+    } );
+  }
+
+  deleteFile(file: RepositoryResponse) {
+    const fileId = this.getFileId(file) || '';
+    this.repositoryService.deleteFile(fileId)
+      .subscribe();
   }
 
 }
