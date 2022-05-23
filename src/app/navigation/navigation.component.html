@@ -17,17 +17,38 @@
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
     </mat-toolbar>
-    
     <ng-container *ngFor="let category of files.categories">
-      <p>{{category.name}}</p>
-      <ng-container *ngFor="let subcategory of category.subcategories" >
-        <p>{{subcategory.name}}</p>
-        <p>{{subcategory.shortName}}</p>
-        <ng-container *ngFor="let control of controls">
-          <p>{{control.name}}</p>
-        </ng-container>
-      </ng-container>
+      <mat-expansion-panel (opened)="panelCategoryState = true"
+                                (closed)="panelCategoryState = false">
+     <mat-expansion-panel-header>
+      <mat-panel-title>{{category.name}}</mat-panel-title>
+      <div class="icon_container">
+        <mat-icon class="add"
+                  aria-hidden="false"
+                  aria-label="Example home icon"
+                  style="cursor: pointer;">
+          add
+        </mat-icon>
+        <mat-icon id="remove"
+        aria-hidden="false"
+        aria-label="Example home icon"
+        style="cursor: pointer;">
+remove
+</mat-icon>
+      </div>
+      <mat-panel-description>
+      </mat-panel-description>
+     </mat-expansion-panel-header>
+     <ng-container *ngFor="let subcategory of category.subcategories" >
+       <div class="subcatogry_bloque"></div>
+      <p>{{subcategory.name}}({{subcategory.shortName}})</p>
+    </ng-container> 
+     <ng-container *ngFor="let control of controls">
+       <div class="e4152_bloque">
+        <p>{{control.name}}</p>
+       </div>
     </ng-container>
-
+    </mat-expansion-panel>
+    </ng-container>
   </mat-sidenav-content>
 </mat-sidenav-container>
