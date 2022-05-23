@@ -40,8 +40,23 @@ remove
       </mat-panel-description>
      </mat-expansion-panel-header>
      <ng-container *ngFor="let subcategory of category.subcategories" >
-       <div class="subcatogry_bloque"></div>
+       <div class="subcatogry_bloque">
       <p>{{subcategory.name}}({{subcategory.shortName}})</p>
+    </div>
+    <div class="icon_container">
+      <mat-icon class="add"
+                aria-hidden="false"
+                aria-label="Example home icon"
+                style="cursor: pointer;">
+        add
+      </mat-icon>
+      <mat-icon id="remove"
+      aria-hidden="false"
+      aria-label="Example home icon"
+      style="cursor: pointer;">
+remove
+</mat-icon>
+    </div>
     </ng-container> 
      <ng-container *ngFor="let control of controls">
        <div class="e4152_bloque">
