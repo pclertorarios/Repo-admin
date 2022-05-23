@@ -17,9 +17,9 @@
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
     </mat-toolbar>
+    
     <ng-container *ngFor="let category of files.categories">
       <p>{{category.name}}</p>
-      <ng-container *ngIf="category.name === "></ng-container>
       <ng-container *ngFor="let subcategory of category.subcategories" >
         <p>{{subcategory.name}}</p>
         <p>{{subcategory.shortName}}</p>
