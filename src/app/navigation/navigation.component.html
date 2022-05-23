@@ -17,6 +17,17 @@
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
     </mat-toolbar>
-   <p>{{files.categories}}</p>
+    <ng-container *ngFor="let category of files.categories">
+      <p>{{category.name}}</p>
+      <ng-container *ngIf="category.name === "></ng-container>
+      <ng-container *ngFor="let subcategory of category.subcategories" >
+        <p>{{subcategory.name}}</p>
+        <p>{{subcategory.shortName}}</p>
+        <ng-container *ngFor="let control of controls">
+          <p>{{control.name}}</p>
+        </ng-container>
+      </ng-container>
+    </ng-container>
+
   </mat-sidenav-content>
 </mat-sidenav-container>
