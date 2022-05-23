@@ -36,7 +36,6 @@ export class NavigationComponent implements OnInit{
           });
         });
       });
-      console.log(this.files, this.categories, this.subCategories, this.controls);
     });
   }
 

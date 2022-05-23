@@ -36,13 +36,12 @@
 remove
 </mat-icon>
       </div>
-      <mat-panel-description>
-      </mat-panel-description>
      </mat-expansion-panel-header>
      <ng-container *ngFor="let subcategory of category.subcategories" >
-       <div class="subcatogry_bloque">
-      <p>{{subcategory.name}}({{subcategory.shortName}})</p>
-    </div>
+      <mat-expansion-panel (opened)="panelCategoryState = true"
+      (closed)="panelCategoryState = false">
+        <mat-expansion-panel-header>
+          <mat-panel-title>{{subcategory.shortName}}</mat-panel-title>
     <div class="icon_container">
       <mat-icon class="add"
                 aria-hidden="false"
@@ -57,12 +56,14 @@ remove
 remove
 </mat-icon>
     </div>
+        </mat-expansion-panel-header>
+  <ng-container *ngFor="let control of controls">
+          <div class="e4152_bloque">
+            <p>{{control.name}}</p>
+          </div>
+       </ng-container>
+      </mat-expansion-panel>
     </ng-container> 
-     <ng-container *ngFor="let control of controls">
-       <div class="e4152_bloque">
-        <p>{{control.name}}</p>
-       </div>
-    </ng-container>
     </mat-expansion-panel>
     </ng-container>
   </mat-sidenav-content>

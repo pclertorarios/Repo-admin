@@ -18,7 +18,7 @@ export class ServicioService {
   getPosts(){
 
     const url: string = `${this.files}`;
-
+     
     return this.http.get<PostResponse>(url);
   }
 
