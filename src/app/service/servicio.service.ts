@@ -1,14 +1,20 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { PostResponse } from '../interfaces/post.interface';
 import { environment } from 'src/environments/environment';
+import {  Observable, throwError } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 @Injectable({
   providedIn: 'root'
 })
 export class ServicioService {
 
   private files ='http://localhost:3000/api/global-form/default'
-
+  httpOptions = {
+    headers: new HttpHeaders({
+      'Content-Type': 'application/json'
+    })
+  }
 
 
   constructor(private http: HttpClient){}
@@ -22,13 +28,5 @@ export class ServicioService {
     return this.http.get<PostResponse>(url);
   }
 
-  createFile(file: PostResponse) {
-    const url: string = `${ this.files }/files`;
-    return this.http.post<PostResponse>(url, file);
-  }
 
-  deleteFile(fileId: string) {
-    const url: string = `${ this.files }/files/${ fileId }`;
-    return this.http.delete<any>(url);
-  }
 }

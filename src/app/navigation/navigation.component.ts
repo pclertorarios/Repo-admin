@@ -20,6 +20,9 @@ export class NavigationComponent implements OnInit{
   panelCategoryState = false;
   panelSubCategoryState = false;
   panelCaontrolState = false;
+  private getFileId(file: PostResponse) {
+    return file._id;
+  }
 
   constructor(private servicioService: ServicioService, private router:Router) {}
 
@@ -38,5 +41,7 @@ export class NavigationComponent implements OnInit{
       });
     });
   }
+
+ 
 
 }
