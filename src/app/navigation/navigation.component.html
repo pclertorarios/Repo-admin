@@ -27,13 +27,14 @@
                   aria-hidden="false"
                   aria-label="Example home icon"
                   style="cursor: pointer;">
-          add
+                     add
         </mat-icon>
         <mat-icon id="remove"
         aria-hidden="false"
         aria-label="Example home icon"
+        (click)="deleteFile(file)"
         style="cursor: pointer;">
-remove
+                     remove
 </mat-icon>
       </div>
      </mat-expansion-panel-header>
@@ -52,15 +53,23 @@ remove
       <mat-icon id="remove"
       aria-hidden="false"
       aria-label="Example home icon"
+      (click)="deleteFile(file)"
       style="cursor: pointer;">
-remove
+          remove
 </mat-icon>
     </div>
         </mat-expansion-panel-header>
-  <ng-container *ngFor="let control of controls">
-          <div class="e4152_bloque">
+  <ng-container *ngFor="let control of subcategory.controls">     
             <p>{{control.name}}</p>
-          </div>
+            <div class="icon_container">
+              <mat-icon id="remove"
+              aria-hidden="false"
+              aria-label="Example home icon"
+              (click)="deleteFile(file)"
+              style="cursor: pointer;">
+                  remove
+        </mat-icon>
+            </div>
        </ng-container>
       </mat-expansion-panel>
     </ng-container> 

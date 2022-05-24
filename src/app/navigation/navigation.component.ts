@@ -3,6 +3,8 @@ import { Router } from '@angular/router';
 import { Category, Control, PostResponse, Subcategory } from '../interfaces/post.interface';
 import { HttpClient } from '@angular/common/http';
 import { ServicioService } from '../service/servicio.service';
+import { MatDialog } from '@angular/material/dialog';
+import { DialogComponent } from '../component/dialog/dialog2.component';
 
 @Component({
   selector: 'app-navigation',
@@ -21,7 +23,11 @@ export class NavigationComponent implements OnInit{
   panelSubCategoryState = false;
   panelCaontrolState = false;
 
-  constructor(private servicioService: ServicioService, private router:Router) {}
+  private getFileId(files: PostResponse) {
+    return files._id;
+  }
+
+  constructor(private servicioService: ServicioService, private router:Router, private dialog: MatDialog) {}
 
   ngOnInit(): void {
     this.servicioService.getPosts()
@@ -37,6 +43,32 @@ export class NavigationComponent implements OnInit{
         });
       });
     });
+  }
+
+  addNewCategory() {
+    this.dialog.open( DialogComponent, {
+      width: '50rem',
+      data: {
+        withCategory: false,
+        category: { name: '',subcategory: '', shortName:'' }
+      }
+    });
+  }
+
+  addNewSubcategory(subcategory: string) {
+    this.dialog.open( DialogComponent, {
+      width: '50rem',
+      data: {
+        withsubCategory: true,
+
+        subcategory: {name: '',controls:''}
+      }
+    } );
+  }
+  deleteFile(file: PostResponse) {
+    const fileId = this.getFileId(file) || '';
+    this.servicioService.deleteFile(fileId)
+      .subscribe();
   }
 
 }
