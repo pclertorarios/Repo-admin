@@ -28,5 +28,8 @@ export class ServicioService {
     return this.http.get<PostResponse>(url);
   }
 
-
+  deleteControl(controlId: string) {
+    const url: string = `${ this.files }${ controlId }`;
+    return this.http.delete<any>(url);
+  }
 }

@@ -4,6 +4,7 @@ import { Category, Control, PostResponse, Subcategory } from '../interfaces/post
 import { HttpClient } from '@angular/common/http';
 import { ServicioService } from '../service/servicio.service';
 
+
 @Component({
   selector: 'app-navigation',
   templateUrl: './navigation.component.html',
@@ -20,9 +21,10 @@ export class NavigationComponent implements OnInit{
   panelCategoryState = false;
   panelSubCategoryState = false;
   panelCaontrolState = false;
-  private getFileId(file: PostResponse) {
-    return file._id;
+  private getControl(control: Control) {
+    return control.name;
   }
+
 
   constructor(private servicioService: ServicioService, private router:Router) {}
 
@@ -41,7 +43,12 @@ export class NavigationComponent implements OnInit{
       });
     });
   }
-
- 
+/*
+  deleteControl(control: Control) {
+    const controlId = this.getControl(control) || '';
+    this.servicioService.deleteControl(control)
+      .subscribe();
+  }
+ */
 
 }
