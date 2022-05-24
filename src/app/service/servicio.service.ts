@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { PostResponse } from '../interfaces/post.interface';
-
+import { environment } from 'src/environments/environment';
 @Injectable({
   providedIn: 'root'
 })
@@ -22,4 +22,13 @@ export class ServicioService {
     return this.http.get<PostResponse>(url);
   }
 
+  createFile(file: PostResponse) {
+    const url: string = `${ this.files }/files`;
+    return this.http.post<PostResponse>(url, file);
+  }
+
+  deleteFile(fileId: string) {
+    const url: string = `${ this.files }/files/${ fileId }`;
+    return this.http.delete<any>(url);
+  }
 }
