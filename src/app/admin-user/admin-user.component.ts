@@ -12,44 +12,45 @@ import {UpdateUserInterface} from "../models/UpdateUser.interface";
   styleUrls: ['./admin-user.component.scss']
 })
 export class AdminUserComponent implements OnInit {
-  users: Array<UserInterface> | undefined;
-  selected = 0;
-  edit = false;
-  userSelected: UserInterface | undefined;
-  usersA: UserInterface[] = [
-    {id: 0, name: 'juan', lastName: 'juan', email: 'juan', phone: 'juan', password: 'juan'},
-    {id: 1, name: 'luis', lastName: 'luis', email: 'juan', phone: 'juan', password: 'juan'},
-    {id: 2, name: 'carlos', lastName: 'carlos', email: 'juan', phone: 'juan', password: 'juan'}
-  ]
+  users!: Array<UserInterface>;
+  userSelected!: UserInterface;
   constructor(private userService: UsersService,
               public dialog: MatDialog) {
-    this.userService.getUserById(this.selected).subscribe(response=>this.userSelected = response);
-
-
   }
   ngOnInit(): void {
     this.userService.getUsers()
       .subscribe(resp => {this.users = resp; console.log(this.users);});
   }
-  eliminarUsuario(id: number){
-    this.userService.deleteUser(id);
+  eliminarUsuario(){
+    this.userService.deleteUser(this.userSelected._id).subscribe();
+    this.userService.getUsers()
+      .subscribe(resp => {this.users = resp; console.log(resp);});
   }
   openEditDialog(){
     const dialogRef = this.dialog.open(EditUserComponent, {
       width: '500px',
       data: {
-        id: this.userSelected?.id,
+        id: this.userSelected?._id,
         name: this.userSelected?.name,
         lastName: this.userSelected?.lastName,
         email: this.userSelected?.email,
         password: this.userSelected?.password,
-        phone: this.userSelected?.phone
       }
     });
 
     dialogRef.beforeClosed().subscribe(result => {
-      this.userService.getUserById(this.selected)
+      this.userService.getUserById(this.userSelected._id)
         .subscribe(response => this.userSelected = response);
     })
+  }
+  update:UpdateUserInterface = {
+    "name": "Jose",
+    "lastName": "Perez",
+    "email": "fasfasfasf",
+    "password": "sadasdasd",
+    "userType": "afasfas"
+  };
+  probar(){
+    this.userService.updateUser("627198a825fe1aa322a8ce69", this.update).subscribe(response =>{console.log(response);});
   }
 }

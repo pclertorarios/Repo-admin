@@ -11,9 +11,14 @@ import { NgForm } from '@angular/forms';
 })
 export class EditUserComponent implements OnInit {
 
-  editProfile: UpdateUserInterface | undefined;
   someValue: boolean = false;
-
+  update:UpdateUserInterface = {
+    "name": "Jose",
+    "lastName": "Perez",
+    "email": "fasfasfasf",
+    "password": "sadasdasd",
+    "userType": "fasfasf"
+  };
   constructor(
     public dialogRef: MatDialogRef<EditUserComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
@@ -25,8 +30,8 @@ export class EditUserComponent implements OnInit {
   }
   updateProfile(form: NgForm){
     const updateData: UpdateUserInterface = form.value;
-    console.log(updateData);
-    this.userService.updateUser(this.data.id, updateData);
+    console.log(this.data.id,updateData);
+    this.userService.updateUser(this.data.id, updateData).subscribe(response => {console.log(response)});
     this.dialogRef.close();
   }
   onNoClick(): void{

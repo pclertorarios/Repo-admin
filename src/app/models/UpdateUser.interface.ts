@@ -3,5 +3,5 @@ export interface UpdateUserInterface{
   lastName: string,
   email: string,
   password: string,
-  phone: string
+  userType: string
 }

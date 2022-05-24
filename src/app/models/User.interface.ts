@@ -1,8 +1,8 @@
 export interface UserInterface{
-  id: number,
+  _id: any,
   name: string,
   lastName: string,
   email: string,
-  password: string,
-  phone: string
+  userType: string,
+  password: string
 }
