@@ -6,11 +6,11 @@
     <mat-toolbar>Secciones</mat-toolbar>
     <mat-nav-list style="background-color:#e3f2fd;">
       <a mat-list-item href="index.html">Control BML</a>
-      <a mat-list-item href="repositorio.component.html">Repositorio</a>
-      <a mat-list-item href="admin-user.component.html">Administrar Perfil</a>
+      <a mat-list-item routerLink="repository">Repositorio</a>
+      <a mat-list-item routerLink="admin">Administrar Perfil</a>
     </mat-nav-list>
   </mat-sidenav>
-  <mat-sidenav-content>
+  <!-- <mat-sidenav-content>
     <mat-toolbar color="primary">
       <button
         type="button"
@@ -21,54 +21,10 @@
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
     </mat-toolbar>
-    <mat-accordion>
-      <mat-expansion-panel (opened)="panelMainState = true"
-                           (closed)="panelMainState = false">
-        <mat-expansion-panel-header>
-          <mat-panel-title> Repositorio </mat-panel-title>
-        </mat-expansion-panel-header>
-        <!-- Main Content -->
-        <!-- Panel Category -->
-        <mat-accordion>
-          <ng-container *ngIf="files; else noFiles">
-            <ng-container *ngFor="let category of categories">
-              <mat-expansion-panel (opened)="panelCategoryState = true"
-                                   (closed)="panelCategoryState = false">
-    
-                <mat-expansion-panel-header>
-                  <mat-panel-title> {{ category }} </mat-panel-title>
-                </mat-expansion-panel-header>
-    
-                <!-- Category Content-->
-                <!-- Links -->
-                <ng-container *ngIf="files.length > 0; else noElements">
-                  <mat-list role="list">
-                   <ng-container *ngFor="let file of files">
-                      <ng-container *ngIf="file.category === category">
-                        <mat-list-item role="listitem">
-                          <a [href]="file.link" target="_blank">{{ file.name }}</a>
-                        </mat-list-item>
-                      </ng-container>
-                    </ng-container>
-                  </mat-list>
-                </ng-container>
-    
-                <ng-template #noElements>
-                  This category has no items
-                </ng-template>
-    
-              </mat-expansion-panel>
-            </ng-container>
-          </ng-container>
-    
-          <ng-template #noFiles>
-            No files exist
-          </ng-template>
-    
-        </mat-accordion>
-        <!-- !Panel Category -->
-    
-      </mat-expansion-panel>
-    </mat-accordion>
+  </mat-sidenav-content> -->
+  <mat-sidenav-content  style="margin-top: 1rem;">
+    <ng-container>
+      <router-outlet></router-outlet>
+    </ng-container>
   </mat-sidenav-content>
 </mat-sidenav-container>

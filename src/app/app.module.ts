@@ -1,27 +1,21 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
-
+import { AppRoutingModule } from './app-routing.module';
+import { LayoutModule } from '@angular/cdk/layout';
 import { MaterialModule } from './material/material.module';
 
-import { AppRoutingModule } from './app-routing.module';
+// Pages
 import { AppComponent } from './app.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NavigationComponent } from './navigation/navigation.component';
-import { LayoutModule } from '@angular/cdk/layout';
-import { MatToolbarModule } from '@angular/material/toolbar';
-import { MatButtonModule } from '@angular/material/button';
-import { MatSidenavModule } from '@angular/material/sidenav';
-import { MatIconModule } from '@angular/material/icon';
-import { MatListModule } from '@angular/material/list';
+import { AdminUserComponent } from './pages/admin-user/admin-user.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { MatGridListModule } from '@angular/material/grid-list';
-import { MatCardModule } from '@angular/material/card';
-import { MatMenuModule } from '@angular/material/menu';
-import { RepositorioComponent } from './repositorio/repositorio.component';
-import { AdminUserComponent } from './admin-user/admin-user.component';
-import { HttpClientModule } from '@angular/common/http';
+import { NavigationComponent } from './navigation/navigation.component';
+import { RepositorioComponent } from './pages/repositorio/repositorio.component';
+
+// Components
 import { DialogComponent } from './components/dialog/dialog.component';
 
 @NgModule({
@@ -32,7 +26,7 @@ import { DialogComponent } from './components/dialog/dialog.component';
     RepositorioComponent,
     AdminUserComponent,
     DialogComponent,
-  ],
+],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -40,14 +34,6 @@ import { DialogComponent } from './components/dialog/dialog.component';
     LayoutModule,
     ReactiveFormsModule,
     MaterialModule,
-    MatToolbarModule,
-    MatButtonModule,
-    MatSidenavModule,
-    MatIconModule,
-    MatListModule,
-    MatGridListModule,
-    MatCardModule,
-    MatMenuModule,
     HttpClientModule
   ],
   providers: [],

@@ -1,32 +1,22 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { PostResponse } from '../interfaces/post.interface'; 
-import { HttpClient } from '@angular/common/http';
-import { ServicioService } from '../service/servicio.service';
+import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
+import { Observable } from 'rxjs';
+import { map, shareReplay } from 'rxjs/operators';
 
 @Component({
   selector: 'app-navigation',
   templateUrl: './navigation.component.html',
   styleUrls: ['./navigation.component.scss']
 })
-export class NavigationComponent implements OnInit{
+export class NavigationComponent {
 
-  files!: PostResponse[];
-  categories: string[] = [];
-  panelMainState = false;
-  panelCategoryState = false;
+  isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
+  .pipe(
+    map(result => result.matches),
+    shareReplay()
+  );
 
-
-
-  constructor(private servicioService: ServicioService, private router:Router) {}
-  ngOnInit(): void {
-    this.servicioService.getRepositories()
-      .subscribe( files => {
-        this.files = files;
-        this.files.forEach(file => {
-       
-        });
-      });
-  }
+  constructor(private breakpointObserver: BreakpointObserver, private router:Router) {}
 
 }
