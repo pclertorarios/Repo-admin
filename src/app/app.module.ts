@@ -20,14 +20,16 @@ import { MatMenuModule } from '@angular/material/menu';
 import { RepositorioComponent } from './repositorio/repositorio.component';
 import { AdminUserComponent } from './admin-user/admin-user.component';
 import { HttpClientModule } from '@angular/common/http';
+import { BmlControlComponent } from './bml-control/bml-control.component';
 
 @NgModule({
   declarations: [
-    AppComponent,
+    BmlControlComponent,
     NavigationComponent,
     DashboardComponent,
     RepositorioComponent,
     AdminUserComponent,
+    BmlControlComponent,
   ],
   imports: [
     BrowserModule,

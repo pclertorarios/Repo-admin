@@ -1,0 +1,80 @@
+<mat-sidenav-container class="sidenav-container">
+    <mat-sidenav #drawer class="sidenav" fixedInViewport>
+      <mat-toolbar>Secciones</mat-toolbar>
+      <mat-nav-list style="background-color:#e3f2fd;">
+        <a mat-list-item href="index.html">Control BML</a>
+        <a mat-list-item href="repositorio.component.html">Repositorio</a>
+        <a mat-list-item href="admin-user.component.html">Administrar Perfil</a>
+      </mat-nav-list>
+    </mat-sidenav>
+    <mat-sidenav-content>
+      <mat-toolbar color="primary">
+        <button
+          type="button"
+          aria-label="Toggle sidenav"
+          mat-icon-button
+          (click)="drawer.toggle()">
+          <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+        </button>
+      </mat-toolbar>
+      <ng-container *ngFor="let category of files.categories">
+        <mat-expansion-panel (opened)="panelCategoryState = true"
+                                  (closed)="panelCategoryState = false">
+       <mat-expansion-panel-header>
+        <mat-panel-title>{{category.name}}</mat-panel-title>
+        <div class="icon_container">
+          <mat-icon class="add"
+                    aria-hidden="false"
+                    aria-label="Example home icon"
+                    style="cursor: pointer;">
+                       add
+          </mat-icon>
+          <mat-icon id="remove"
+          aria-hidden="false"
+          aria-label="Example home icon"
+         
+          style="cursor: pointer;">
+                       remove
+  </mat-icon>
+        </div>
+       </mat-expansion-panel-header>
+       <ng-container *ngFor="let subcategory of category.subcategories" >
+        <mat-expansion-panel (opened)="panelCategoryState = true"
+        (closed)="panelCategoryState = false">
+          <mat-expansion-panel-header>
+            <mat-panel-title>{{subcategory.shortName}}</mat-panel-title>
+      <div class="icon_container">
+        <mat-icon class="add"
+                  aria-hidden="false"
+                  aria-label="Example home icon"
+                  style="cursor: pointer;">
+          add
+        </mat-icon>
+        <mat-icon id="remove"
+        aria-hidden="false"
+        aria-label="Example home icon"
+      
+        style="cursor: pointer;">
+            remove
+  </mat-icon>
+      </div>
+          </mat-expansion-panel-header>
+    <ng-container *ngFor="let control of subcategory.controls">     
+              <p>{{control.name}}</p>
+              <div class="icon_container">
+                <mat-icon id="remove"
+                aria-hidden="false"
+                aria-label="Example home icon"
+                
+                style="cursor: pointer;">
+                    remove
+          </mat-icon>
+              </div>
+         </ng-container>
+        </mat-expansion-panel>
+      </ng-container> 
+      </mat-expansion-panel>
+      </ng-container>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+  
