@@ -30,6 +30,7 @@ import { BmlControlComponent } from './bml-control/bml-control.component';
     RepositorioComponent,
     AdminUserComponent,
     BmlControlComponent,
+    AppComponent,
   ],
   imports: [
     BrowserModule,

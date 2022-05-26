@@ -43,5 +43,12 @@ export class BmlControlComponent implements OnInit {
       });
     });
   }
+/*
+  deleteControl(control: Control) {
+    const controlId = this.getControl(control) || '';
+    this.servicioService.deleteControl(control)
+      .subscribe();
+  }
+ */
 
 }
