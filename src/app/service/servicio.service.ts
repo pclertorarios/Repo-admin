@@ -4,6 +4,7 @@ import { PostResponse } from '../interfaces/post.interface';
 import { environment } from 'src/environments/environment';
 import {  Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
+import {MatDialogModule} from '@angular/material/dialog'
 @Injectable({
   providedIn: 'root'
 })
@@ -28,8 +29,9 @@ export class ServicioService {
     return this.http.get<PostResponse>(url);
   }
 
-  deleteControl(controlId: string) {
-    const url: string = `${ this.files }${ controlId }`;
+  deleteControl(control: string) {
+    const url: string = `${ this.files }/files/${control}`;
     return this.http.delete<any>(url);
+    
   }
 }

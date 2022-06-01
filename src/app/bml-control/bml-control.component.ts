@@ -3,6 +3,9 @@ import { Router } from '@angular/router';
 import { Category, Control, PostResponse, Subcategory } from '../interfaces/post.interface';
 import { HttpClient } from '@angular/common/http';
 import { ServicioService } from '../service/servicio.service';
+import {MatDialogModule} from '@angular/material/dialog'
+import { Injectable } from '@angular/core';
+
 
 
 @Component({
@@ -26,7 +29,7 @@ export class BmlControlComponent implements OnInit {
   }
 
 
-  constructor(private servicioService: ServicioService, private router:Router) {}
+  constructor(private servicioService: ServicioService, private router:Router, private http: HttpClient) {}
 
   ngOnInit(): void {
     this.servicioService.getPosts()
@@ -50,5 +53,11 @@ export class BmlControlComponent implements OnInit {
       .subscribe();
   }
  */
+
+  deleteControl(controls: Control) {
+    const controlId = this.getControl(controls) || '';
+    this.servicioService.deleteControl(controlId)
+      .subscribe();
+  }
 
 }
