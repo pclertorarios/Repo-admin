@@ -12,13 +12,6 @@ import { NgForm } from '@angular/forms';
 export class EditUserComponent implements OnInit {
 
   someValue: boolean = false;
-  update:UpdateUserInterface = {
-    "name": "Jose",
-    "lastName": "Perez",
-    "email": "fasfasfasf",
-    "password": "sadasdasd",
-    "userType": "fasfasf"
-  };
   constructor(
     public dialogRef: MatDialogRef<EditUserComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,

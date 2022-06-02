@@ -47,6 +47,9 @@ button{
   background: #F2994A;
   color: white;
 }
+button:first-child{
+  margin-left: 200px;
+}
 .layout{
   width: 300px;
   height: auto;

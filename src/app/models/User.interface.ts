@@ -4,5 +4,6 @@ export interface UserInterface{
   lastName: string,
   email: string,
   userType: string,
-  password: string
+  password: string,
+  status: boolean
 }

@@ -5,6 +5,8 @@ import {MatDialog} from "@angular/material/dialog";
 import {EditUserComponent} from "../dialogs/edit-user/edit-user.component";
 import {NgForm} from "@angular/forms";
 import {UpdateUserInterface} from "../models/UpdateUser.interface";
+import {Router} from "@angular/router";
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-admin-user',
@@ -14,17 +16,35 @@ import {UpdateUserInterface} from "../models/UpdateUser.interface";
 export class AdminUserComponent implements OnInit {
   users!: Array<UserInterface>;
   userSelected!: UserInterface;
+
+
   constructor(private userService: UsersService,
-              public dialog: MatDialog) {
+              public dialog: MatDialog,public _router: Router, public _location: Location) {
   }
   ngOnInit(): void {
     this.userService.getUsers()
-      .subscribe(resp => {this.users = resp; console.log(this.users);});
+      .subscribe(resp => {this.users = resp;
+        var aux = [];
+        for(var i = 0; i < this.users.length; i++){
+          if(this.users[i].status == true){
+            aux.push(this.users[i]);
+          }
+        }
+        this.users = aux;
+        console.log(this.users);
+      });
   }
   eliminarUsuario(){
-    this.userService.deleteUser(this.userSelected._id).subscribe();
-    this.userService.getUsers()
-      .subscribe(resp => {this.users = resp; console.log(resp);});
+    const editUser:UpdateUserInterface = {
+      id: this.userSelected._id,
+      name: this.userSelected.name,
+      lastName: this.userSelected.lastName,
+      email: this.userSelected.email,
+      password: this.userSelected.password,
+      userType: this.userSelected.userType,
+      status: false,
+    }
+    this.userService.updateUser(this.userSelected._id, editUser).subscribe(response => {console.log(response)});
   }
   openEditDialog(){
     const dialogRef = this.dialog.open(EditUserComponent, {
@@ -42,15 +62,5 @@ export class AdminUserComponent implements OnInit {
       this.userService.getUserById(this.userSelected._id)
         .subscribe(response => this.userSelected = response);
     })
-  }
-  update:UpdateUserInterface = {
-    "name": "Jose",
-    "lastName": "Perez",
-    "email": "fasfasfasf",
-    "password": "sadasdasd",
-    "userType": "afasfas"
-  };
-  probar(){
-    this.userService.updateUser("627198a825fe1aa322a8ce69", this.update).subscribe(response =>{console.log(response);});
   }
 }
