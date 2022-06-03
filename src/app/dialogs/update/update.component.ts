@@ -17,11 +17,11 @@ export class UpdateComponent implements OnInit {
     myFormCategory: FormGroup = this.fb.group({
       name:[,[Validators.required,Validators.minLength(1)]],
       subcateogries:[,[Validators.required,Validators.min(3)]]
-    })
+                                            })
   subcategoryupdate: Subcategory = {
                     name: '', shortName: '',
                     controls: []
-  };
+                                  };
   myFormSubcategory: FormGroup =this.fb.group({
     name:[,[Validators.required,Validators.min(3)]],
     shortname:[,[Validators.required,Validators.minLength(1)]],
@@ -55,6 +55,53 @@ export class UpdateComponent implements OnInit {
     
   }
 
+  closeDialog()
+  {
+    this.dialogRef.close();
+  }
+
+  updateCategory(){
+    if(this.myFormCategory.invalid){
+      this.myFormCategory.markAllAsTouched();
+      return;
+    }
+    this.categoryupdate.name= this.myFormCategory.value['name'];
+    this.categoryupdate.subcategories= this.myFormCategory.value['subcategories'];
+    this.servicioService.updateControl(this.categoryupdate);
+    this.categoryupdate= {name:'',subcategories:[]}
+    this.myFormSubcategory.reset();
+    this.dialogRef.close();
+  }
+
+  updateSucategory(){
+    if(this.myFormSubcategory.invalid){
+      this.myFormSubcategory.markAllAsTouched();
+      return;
+    }
+    this.subcategoryupdate.name= this.myFormSubcategory.value['name'];
+    this.subcategoryupdate.shortName= this.myFormSubcategory.value['shortname'];
+    this.subcategoryupdate.controls= this.myFormSubcategory.value['controls'];
+    this.servicioService.updateControl(this.subcategoryupdate);
+    this.subcategoryupdate = {name:'',shortName:'',controls:[]}
+    this.myFormSubcategory.reset();
+    this.dialogRef.close();
+  }
+
+
+  updateControl(){
+    if(this.myFormControl.invalid){
+      this.myFormControl.markAllAsTouched();
+      return;
+    } 
+    this.controlupdate.name = this.myFormControl.value['name'];
+    this.servicioService.updateControl(this.controlupdate);
+    this.controlupdate = {name:''}
+    this.myFormControl.reset();
+    this.dialogRef.close();
+  }
+  
+
+  
 }
 
 
