@@ -48,6 +48,30 @@ export class BmlControlComponent implements OnInit {
     });
   }
 
+  createControl=(data : any) => {
+    console.log('info => ', data)
+    console.log('data a eliminar0' , this.files.categories[data.i].subcategories[data.subi].
+    controls[data.coni])
+    console.log('update old files = > ', this.files)
+    let controlCopy = this.files.categories[data.i].subcategories[data.subi].controls
+    console.log('controls => ', controlCopy, data.coni)
+    controlCopy.map((item, index) => {
+      if (index == data.coni){
+        this.dialog.open(CreateComponent,{
+          width: '50rem',
+          data:{
+            withControl: false,
+            SubCategory: {name:'',shortname:''}
+          }
+        });
+      }
+    })
+    this.files.categories[data.i].subcategories[data.subi].controls = controlCopy
+    console.log('update new files = > ', this.files)
+    this.deleteControl(this.files)
+  }
+
+
 
   UpdateControl = (data : any) => {
     console.log('info => ', data)
