@@ -58,6 +58,10 @@ export class CreateComponent implements OnInit {
       this.dialogRef.close();
     }
   
+    isServicioCategory():boolean
+    {
+      return this.data.withCategory;
+    }
     newCategory(){
       if(this.myFormCategory.invalid){
         this.myFormCategory.markAllAsTouched();
