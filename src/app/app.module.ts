@@ -21,6 +21,8 @@ import { RepositorioComponent } from './repositorio/repositorio.component';
 import { AdminUserComponent } from './admin-user/admin-user.component';
 import { HttpClientModule } from '@angular/common/http';
 import { BmlControlComponent } from './bml-control/bml-control.component';
+import { CreateComponent } from './dialogs/create/create.component';
+import { UpdateComponent } from './dialogs/update/update.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +33,8 @@ import { BmlControlComponent } from './bml-control/bml-control.component';
     AdminUserComponent,
     BmlControlComponent,
     AppComponent,
+    CreateComponent,
+    UpdateComponent,
   ],
   imports: [
     BrowserModule,
