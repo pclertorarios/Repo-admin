@@ -6,6 +6,7 @@ import { ServicioService } from '../service/servicio.service';
 import {MatDialog, MatDialogModule} from '@angular/material/dialog'
 import { Injectable } from '@angular/core';
 import { CreateComponent } from '../dialogs/create/create.component';
+import { UpdateComponent } from '../dialogs/update/update.component';
 
 
 
@@ -57,7 +58,13 @@ export class BmlControlComponent implements OnInit {
     console.log('controls => ', controlCopy, data.coni)
     controlCopy.map((item, index) => {
       if (index == data.coni){
-        item.name = 'EDICION DE CONTROL'
+        this.dialog.open(UpdateComponent,{
+          width: '50rem',
+          data:{
+            withControl: false,
+            SubCategory: {name:'',shortname:''}
+          }
+        });
       }
     })
     this.files.categories[data.i].subcategories[data.subi].controls = controlCopy
@@ -71,14 +78,14 @@ export class BmlControlComponent implements OnInit {
     //   .subscribe();
   }
 
-  addControl(Control:string)
+  addSubCategory(SubCategory:string)
   {
     this.dialog.open(CreateComponent,
       {
         width: '50rem',
         data:{
           withControl: false,
-          controls: {name:''}
+          SubCategory: {name:'',shortname:''}
         }
       });
     

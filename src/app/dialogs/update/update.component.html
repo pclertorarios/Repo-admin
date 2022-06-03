@@ -1,1 +1,27 @@
-<p>update works!</p>
+<h1>Actualice control</h1>
+<br>
+<p>Complete todos los campos</p>
+<hr>
+
+<form (ngSubmit)="updateControl"
+                autocomplete="off"
+                [formGroup]="myFormControl">
+
+<mat-form-field appearance="fill">
+<mat-label>Ingrese el control</mat-label>
+ <input matInput formControlName="link">
+  </mat-form-field>
+
+<div class="container">
+<button mat-button
+        color="primary"
+         type="submit">
+            Agregar
+        </button>
+     <button mat-button
+       color="primary"
+    (click)="closeDialog()">Cancelar</button>
+</div>         
+
+                
+</form>
