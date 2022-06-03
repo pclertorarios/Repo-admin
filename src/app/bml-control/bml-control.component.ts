@@ -19,7 +19,6 @@ export class BmlControlComponent implements OnInit {
   categories: Category[] = [];
   subCategories: Subcategory[] = [];
   controls: Control[] = [];
-
   panelMainState = false;
   panelCategoryState = false;
   panelSubCategoryState = false;
@@ -54,10 +53,75 @@ export class BmlControlComponent implements OnInit {
   }
  */
 
-  deleteControl(controls: Control) {
-    const controlId = this.getControl(controls) || '';
-    this.servicioService.deleteControl(controlId)
-      .subscribe();
+  showInfo = (data : any) => {
+    console.log('info => ', data)
+    console.log('data a eliminar0' , this.files.categories[data.i].subcategories[data.subi].
+    controls[data.coni])
+    console.log('update old files = > ', this.files)
+    let controlCopy = this.files.categories[data.i].subcategories[data.subi].controls
+    console.log('controls => ', controlCopy, data.coni)
+    controlCopy.map((item, index) => {
+      if (index == data.coni){
+        item.name = 'EDICION DE CONTROL'
+      }
+    })
+    this.files.categories[data.i].subcategories[data.subi].controls = controlCopy
+    console.log('update new files = > ', this.files)
+    this.deleteControl(this.files)
+  }
+  
+  DeleteCategory = (data: any)=>{
+    console.log('info => ', data)
+    console.log('data a eliminar0' , this.files.categories)
+    console.log('update old files = > ', this.files)
+    let controlCopy = this.files.categories
+    console.log('controls => ', controlCopy, data.i.name)
+    controlCopy=controlCopy.filter((_,index)=>index!=data)
+    this.files.categories = controlCopy
+    console.log('update new files = > ', this.files)
+    this.deleteCategory(this.files)
+  }
+
+  DeleteSubcategory = (data : any) => {
+    console.log('info => ', data)
+    console.log('data a eliminar0' , this.files.categories[data.i].subcategories[data.subi])
+    console.log('update old files = > ', this.files)
+    let controlCopy = this.files.categories[data.i].subcategories
+    console.log('controls => ', controlCopy, data.subi)
+    controlCopy=controlCopy.filter((_,index)=>index!=data.subi)
+    this.files.categories[data.i].subcategories = controlCopy
+    console.log('update new files = > ', this.files)
+    this.deleteSubcategory(this.files)
+  }
+
+  DeleteControl = (data : any) => {
+    console.log('info => ', data)
+    console.log('data a eliminar0' , this.files.categories[data.i].subcategories[data.subi].
+    controls[data.coni])
+    console.log('update old files = > ', this.files)
+    let controlCopy = this.files.categories[data.i].subcategories[data.subi].controls
+    console.log('controls => ', controlCopy, data.coni)
+    controlCopy=controlCopy.filter((_,index)=>index!=data.coni)
+    this.files.categories[data.i].subcategories[data.subi].controls = controlCopy
+    console.log('update new files = > ', this.files)
+    this.deleteControl(this.files)
+  }
+
+ 
+
+  deleteCategory (filesToUpdate: any){
+    this.servicioService.deleteSubCategory(filesToUpdate)
+  }
+
+  deleteSubcategory( fileToUpdate: any){
+    this.servicioService.deleteSubCategory(fileToUpdate)
+  }
+
+  deleteControl(fileToUpdate: any) {
+    // const controlId = this.getControl(controls) || '';
+    this.servicioService.deleteControl(fileToUpdate)
+    //   .subscribe();
   }
 
 }
+

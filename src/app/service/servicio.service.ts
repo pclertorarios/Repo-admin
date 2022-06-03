@@ -29,9 +29,20 @@ export class ServicioService {
     return this.http.get<PostResponse>(url);
   }
 
-  deleteControl(control: string) {
-    const url: string = `${ this.files }/files/${control}`;
-    return this.http.delete<any>(url);
+  deleteCategory(body:any){
+    const url: string = `http://localhost:3000/api/global-form/update-default`;
+    return this.http.put<any>(url, body).subscribe(response =>{console.log(response)});
+
+  }
+
+  deleteSubCategory(body: any){
+    const url: string = `http://localhost:3000/api/global-form/update-default`;
+    return this.http.put<any>(url, body).subscribe(response =>{console.log(response)});
+  }
+
+  deleteControl(body: any) {
+    const url: string = `http://localhost:3000/api/global-form/update-default`;
+    return this.http.put<any>(url, body).subscribe(response =>{console.log(response)});
     
   }
 }
