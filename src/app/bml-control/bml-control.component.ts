@@ -45,15 +45,9 @@ export class BmlControlComponent implements OnInit {
       });
     });
   }
-/*
-  deleteControl(control: Control) {
-    const controlId = this.getControl(control) || '';
-    this.servicioService.deleteControl(control)
-      .subscribe();
-  }
- */
 
-  showInfo = (data : any) => {
+
+  UpdateControl = (data : any) => {
     console.log('info => ', data)
     console.log('data a eliminar0' , this.files.categories[data.i].subcategories[data.subi].
     controls[data.coni])
@@ -68,6 +62,12 @@ export class BmlControlComponent implements OnInit {
     this.files.categories[data.i].subcategories[data.subi].controls = controlCopy
     console.log('update new files = > ', this.files)
     this.deleteControl(this.files)
+  }
+
+  updateControl(fileToUpdate: any) {
+    // const controlId = this.getControl(controls) || '';
+    this.servicioService.updateControl(fileToUpdate)
+    //   .subscribe();
   }
   
   DeleteCategory = (data: any)=>{

@@ -29,6 +29,13 @@ export class ServicioService {
     return this.http.get<PostResponse>(url);
   }
 
+  
+  updateControl(body:any){
+    const url: string = `http://localhost:3000/api/global-form/update-default`;
+    return this.http.put<any>(url, body).subscribe(response =>{console.log(response)});
+
+  }
+
   deleteCategory(body:any){
     const url: string = `http://localhost:3000/api/global-form/update-default`;
     return this.http.put<any>(url, body).subscribe(response =>{console.log(response)});

@@ -58,7 +58,17 @@
     display: flex;
     justify-content: flex-end;
     align-items: center;
+    
   }
+.icon_container_control{
+
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  position:relative;
+  bottom: 35px;
+
+}
   
   .icon_container mat-icon {
     padding-right: .8rem;

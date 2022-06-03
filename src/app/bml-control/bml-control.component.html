@@ -75,11 +75,11 @@
         </mat-expansion-panel-header>
   <ng-container *ngFor="let control of subcategory.controls; let coni = index">     
             <p>{{control.name}}</p>
-            <div class="icon_container">
+            <div class="icon_container_control">
               <mat-icon id="update"
                 aria-hidden="false"
                 aria-label="Example home icon"
-    
+                (click)="UpdateControl({control, coni, subi, i})"
                 style="cursor: pointer;">
                   autorenew
              </mat-icon>
