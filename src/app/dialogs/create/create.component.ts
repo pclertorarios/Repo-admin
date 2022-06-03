@@ -2,6 +2,7 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder,FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef,MAT_DIALOG_DATA} from '@angular/material/dialog';
 import { ServicioService } from 'src/app/service/servicio.service';
+import {MatDialog} from '@angular/material/dialog'
 import { PostResponse,Category,Subcategory,Control} from 'src/app/interfaces/post.interface';
 @Component({
   selector: 'app-create',

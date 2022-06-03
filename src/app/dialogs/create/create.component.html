@@ -6,10 +6,10 @@
 <form (ngSubmit)="newControl"
                 autocomplete="off"
                 [formGroup]="myFormControl">
+
 <mat-form-field appearance="fill">
 <mat-label>Ingrese el control</mat-label>
  <input matInput formControlName="link">
- <mat-error *ngIf="fieldIsValid('control')">Debe de ser de 3 letras</mat-error>
   </mat-form-field>
 
 <div class="container">

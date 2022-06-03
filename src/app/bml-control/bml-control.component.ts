@@ -3,8 +3,9 @@ import { Router } from '@angular/router';
 import { Category, Control, PostResponse, Subcategory } from '../interfaces/post.interface';
 import { HttpClient } from '@angular/common/http';
 import { ServicioService } from '../service/servicio.service';
-import {MatDialogModule} from '@angular/material/dialog'
+import {MatDialog, MatDialogModule} from '@angular/material/dialog'
 import { Injectable } from '@angular/core';
+import { CreateComponent } from '../dialogs/create/create.component';
 
 
 
@@ -28,7 +29,7 @@ export class BmlControlComponent implements OnInit {
   }
 
 
-  constructor(private servicioService: ServicioService, private router:Router, private http: HttpClient) {}
+  constructor(private servicioService: ServicioService, private http: HttpClient, public dialog: MatDialog) {}
 
   ngOnInit(): void {
     this.servicioService.getPosts()
@@ -68,6 +69,19 @@ export class BmlControlComponent implements OnInit {
     // const controlId = this.getControl(controls) || '';
     this.servicioService.updateControl(fileToUpdate)
     //   .subscribe();
+  }
+
+  addControl(Control:string)
+  {
+    this.dialog.open(CreateComponent,
+      {
+        width: '50rem',
+        data:{
+          withControl: false,
+          controls: {name:''}
+        }
+      });
+    
   }
   
   DeleteCategory = (data: any)=>{

@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { MaterialModule } from './material/material.module';
@@ -23,6 +23,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { BmlControlComponent } from './bml-control/bml-control.component';
 import { CreateComponent } from './dialogs/create/create.component';
 import { UpdateComponent } from './dialogs/update/update.component';
+import { FormGroup, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -50,7 +51,8 @@ import { UpdateComponent } from './dialogs/update/update.component';
     MatGridListModule,
     MatCardModule,
     MatMenuModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule, 
   ],
   providers: [],
   bootstrap: [AppComponent]
