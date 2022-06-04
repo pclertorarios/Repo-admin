@@ -2,8 +2,8 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import { HttpClientModule } from '@angular/common/http';
-import { ReactiveFormsModule } from '@angular/forms';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { LayoutModule } from '@angular/cdk/layout';
 import { MaterialModule } from './material/material.module';
@@ -17,6 +17,11 @@ import { RepositorioComponent } from './pages/repositorio/repositorio.component'
 
 // Components
 import { DialogComponent } from './components/dialog/dialog.component';
+import { EditUserComponent } from './dialogs/edit-user/edit-user.component';
+import { MatButtonToggleModule } from "@angular/material/button-toggle";
+import { MAT_DIALOG_DATA, MatDialogModule, MatDialogRef } from "@angular/material/dialog";
+
+
 
 @NgModule({
   declarations: [
@@ -26,17 +31,28 @@ import { DialogComponent } from './components/dialog/dialog.component';
     RepositorioComponent,
     AdminUserComponent,
     DialogComponent,
-],
+    EditUserComponent,
+  ],
   imports: [
+    ReactiveFormsModule,
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     LayoutModule,
-    ReactiveFormsModule,
     MaterialModule,
-    HttpClientModule
+    HttpClientModule,
+    HttpClientModule,
+    MatButtonToggleModule,
+    MatDialogModule,
+    FormsModule,
   ],
-  providers: [],
+  providers: [{
+    provide: MAT_DIALOG_DATA,
+    useValue: {}
+  },{
+    provide: MatDialogRef,
+    useValue: {}
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

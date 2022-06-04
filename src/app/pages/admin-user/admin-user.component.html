@@ -1,1 +1,68 @@
-<p>admin-user works!</p>
+<div class="fondo">
+  <h2 style="margin-top: 100px; margin-left: 200px">Administrar usuarios</h2>
+  <div class="fondo2">
+    <div>
+      <table>
+        <tr class="fila">
+          <td><p>USUARIOS</p></td>
+          <td colspan="2">
+            <mat-form-field class="combobox">
+              <mat-select [(value)]="userSelected">
+                <mat-option *ngFor="let user of users" [value]="user" class="not-empty-select">
+                  {{user.name + ' ' + user.lastName}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </td>
+          <td>
+            <button mat-raised-button (click)="openEditDialog()">EDITAR</button>
+          </td>
+          <td>
+            <button mat-raised-button (click) = "eliminarUsuario()">ELIMINAR</button>
+          </td>
+        </tr>
+        <tr class="fila">
+          <td>
+            <p>NOMBRE</p>
+          </td>
+          <td colspan="2">
+            <mat-card class="layout" *ngIf="userSelected != null">{{userSelected.name}}</mat-card>
+          </td>
+        </tr>
+        <tr class="fila">
+          <td>
+            <p>APELLIDO</p>
+          </td>
+          <td colspan="2">
+            <mat-card class="layout" *ngIf="userSelected != null">{{userSelected.lastName}}</mat-card>
+          </td>
+        </tr>
+        <tr class="fila">
+          <td>
+            <p>CORREO ELECTRÓNICO</p>
+          </td>
+          <td colspan="2">
+            <mat-card class="layout" *ngIf="userSelected != null">{{userSelected.email}}</mat-card>
+          </td>
+        </tr>
+        <tr class="fila">
+          <td>
+            <p>CONTRASEÑA</p>
+          </td>
+          <td colspan="2">
+            <mat-card class="layout" *ngIf="userSelected != null">{{userSelected.password}}</mat-card>
+          </td>
+        </tr>
+        <tr class="fila">
+          <td>
+            <p>TELÉFONO</p>
+          </td>
+          <td colspan="2">
+            <mat-card class="layout" *ngIf="userSelected != null">{{userSelected._id}}</mat-card>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>
+
