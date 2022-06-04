@@ -1,13 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { Category, Control, PostResponse, Subcategory } from '../interfaces/post.interface';
 import { HttpClient } from '@angular/common/http';
 import { ServicioService } from '../service/servicio.service';
-import {MatDialog, MatDialogModule} from '@angular/material/dialog'
-import { Injectable } from '@angular/core';
-import { CreateComponent } from '../dialogs/create/create.component';
-import { UpdateComponent } from '../dialogs/update/update.component';
+import {MatDialog, MatDialogModule, MatDialogRef,MAT_DIALOG_DATA} from '@angular/material/dialog'
 
+export interface DialogData {
+  title: string;
+  input: string;
+}
 
 
 @Component({
@@ -48,125 +49,144 @@ export class BmlControlComponent implements OnInit {
     });
   }
 
-  createControl=(data : any) => {
-    console.log('info => ', data)
-    console.log('data a eliminar0' , this.files.categories[data.i].subcategories[data.subi].
-    controls[data.coni])
-    console.log('update old files = > ', this.files)
-    let controlCopy = this.files.categories[data.i].subcategories[data.subi].controls
-    console.log('controls => ', controlCopy, data.coni)
-    controlCopy.map((item, index) => {
-      if (index == data.coni){
-        this.dialog.open(CreateComponent,{
-          width: '50rem',
-          data:{
-            withControl: false,
-            SubCategory: {name:'',shortname:''}
-          }
-        });
-      }
+  showEditDialog = (data: any) => {
+    console.log('data => ', data)
+    let dialogRef = this.dialog.open(EditDialog, {
+      width: '250px', 
+      data: {title: data.type, input: data.name}
     })
-    this.files.categories[data.i].subcategories[data.subi].controls = controlCopy
-    console.log('update new files = > ', this.files)
-    this.deleteControl(this.files)
-  }
-
-
-
-  UpdateControl = (data : any) => {
-    console.log('info => ', data)
-    console.log('data a eliminar0' , this.files.categories[data.i].subcategories[data.subi].
-    controls[data.coni])
-    console.log('update old files = > ', this.files)
-    let controlCopy = this.files.categories[data.i].subcategories[data.subi].controls
-    console.log('controls => ', controlCopy, data.coni)
-    controlCopy.map((item, index) => {
-      if (index == data.coni){
-        this.dialog.open(UpdateComponent,{
-          width: '50rem',
-          data:{
-            withControl: false,
-            SubCategory: {name:'',shortname:''}
-          }
-        });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result == '' || result == undefined)
+        return 
+      switch (data.type) {
+        case 'Categoria':
+          this.updateCategory(data.position[0], result)
+          break;
+        case 'SubCategoria':
+          this.updateSubCategory(data.position[0], data.position[1], result)
+          break;
+        case 'Control':
+          this.updateControl(data.position[0], data.position[1], data.position[2], result)
+          break;
+        default:
+          break;
       }
+      this.servicioService.updateGlobalForm(this.files)
+      console.log('new title => ', result)
     })
-    this.files.categories[data.i].subcategories[data.subi].controls = controlCopy
-    console.log('update new files = > ', this.files)
-    this.deleteControl(this.files)
   }
 
-  updateControl(fileToUpdate: any) {
-    // const controlId = this.getControl(controls) || '';
-    this.servicioService.updateControl(fileToUpdate)
-    //   .subscribe();
+  updateCategory = (categoryPos: number, text: string) => {
+    this.files.categories.map((item, i) => {
+      if (i === categoryPos)
+        item.name = text.trim()
+    })
   }
 
-  addSubCategory(SubCategory:string)
-  {
-    this.dialog.open(CreateComponent,
-      {
-        width: '50rem',
-        data:{
-          withControl: false,
-          SubCategory: {name:'',shortname:''}
-        }
-      });
-    
+  updateSubCategory = (categoryPos: number, subCategoryPos: number, text: string) => {
+    this.files.categories[categoryPos].subcategories.map((item, i) => {
+      if (i === subCategoryPos)
+        item.shortName = text.trim()
+    })
+  }
+
+  updateControl = (categoryPos: number, subCategoryPos: number,controlPos: number, text: string) => {
+    this.files.categories[categoryPos].subcategories[subCategoryPos].controls.map((item, i) => {
+      if (i === controlPos)
+        item.name = text.trim()
+    })
+  }
+
+  showAddDialog = (data: any) => {
+    console.log('data => ', data)
+    let dialogRef = this.dialog.open(CreateDialog, {
+      width: '250px', 
+      data: {title: data.type, input: ''}
+    })
+    dialogRef.afterClosed().subscribe(result => {
+      if (result == '' || result == undefined)
+        return 
+      switch (data.type) {
+        case 'Categoria':
+          this.addCategory(result)
+          break;
+        case 'SubCategoria':
+          this.addSubCategory(data.position[0], result)
+          break;
+        case 'Control':
+          this.addControl(data.position[0], data.position[1], result)
+          break;
+        default:
+          break;
+      }
+      this.servicioService.updateGlobalForm(this.files)
+      console.log('new title => ', result)
+    })
+  }
+
+  addCategory = ( text: string) => {
+    const category : Category = {name: text.trim(), subcategories: []}
+    this.files.categories.push(category)
+  }
+
+  addSubCategory = (categoryPos: number, text: string) => {
+    const subCategory : Subcategory = {name: text.trim(), controls: [], shortName: text}
+    this.files.categories[categoryPos].subcategories.push(subCategory)
+  }
+
+  addControl = (categoryPos: number, subCategoryPos: number, text: string) => {
+    const control : Control = {name: text.trim()}
+    this.files.categories[categoryPos].subcategories[subCategoryPos].controls.push(control)
   }
   
-  DeleteCategory = (data: any)=>{
-    console.log('info => ', data)
-    console.log('data a eliminar0' , this.files.categories)
-    console.log('update old files = > ', this.files)
-    let controlCopy = this.files.categories
-    console.log('controls => ', controlCopy, data.i.name)
-    controlCopy=controlCopy.filter((_,index)=>index!=data)
-    this.files.categories = controlCopy
-    console.log('update new files = > ', this.files)
-    this.deleteCategory(this.files)
+  deleteCategory = (categoryPos: number)=>{
+    let categoriesCopy = this.files.categories
+    categoriesCopy = categoriesCopy.filter((_,index) => index != categoryPos)
+    this.files.categories = categoriesCopy
+    this.servicioService.updateGlobalForm(this.files)
   }
 
-  DeleteSubcategory = (data : any) => {
-    console.log('info => ', data)
-    console.log('data a eliminar0' , this.files.categories[data.i].subcategories[data.subi])
-    console.log('update old files = > ', this.files)
-    let controlCopy = this.files.categories[data.i].subcategories
-    console.log('controls => ', controlCopy, data.subi)
-    controlCopy=controlCopy.filter((_,index)=>index!=data.subi)
-    this.files.categories[data.i].subcategories = controlCopy
-    console.log('update new files = > ', this.files)
-    this.deleteSubcategory(this.files)
+  deleteSubcategory = (categoryPos: number, subCategoryPos: number) => {
+    let subCategoiesCopy = this.files.categories[categoryPos].subcategories
+    subCategoiesCopy = subCategoiesCopy.filter((_,index) => index != subCategoryPos)
+    this.files.categories[categoryPos].subcategories = subCategoiesCopy
+    this.servicioService.updateGlobalForm(this.files)
   }
 
-  DeleteControl = (data : any) => {
-    console.log('info => ', data)
-    console.log('data a eliminar0' , this.files.categories[data.i].subcategories[data.subi].
-    controls[data.coni])
-    console.log('update old files = > ', this.files)
-    let controlCopy = this.files.categories[data.i].subcategories[data.subi].controls
-    console.log('controls => ', controlCopy, data.coni)
-    controlCopy=controlCopy.filter((_,index)=>index!=data.coni)
-    this.files.categories[data.i].subcategories[data.subi].controls = controlCopy
-    console.log('update new files = > ', this.files)
-    this.deleteControl(this.files)
+  deleteControl = (categoryPos: number, subCategoryPos: number, controlPos: number) => {
+    let controlCopy = this.files.categories[categoryPos].subcategories[subCategoryPos].controls
+    controlCopy=controlCopy.filter((_,index) => index != controlPos)
+    this.files.categories[categoryPos].subcategories[subCategoryPos].controls = controlCopy
+    this.servicioService.updateGlobalForm(this.files)
   }
-
- 
-
-  deleteCategory (filesToUpdate: any){
-    this.servicioService.deleteSubCategory(filesToUpdate)
-  }
-
-  deleteSubcategory( fileToUpdate: any){
-    this.servicioService.deleteSubCategory(fileToUpdate)
-  }
-
-  deleteControl(fileToUpdate: any) {
-    // const controlId = this.getControl(controls) || '';
-    this.servicioService.deleteControl(fileToUpdate)
-    //   .subscribe();
-  }
-
 }
 
+@Component({
+  selector: 'dialog-overview-create-dialog',
+  templateUrl: '../dialogs/create/create.component.html',
+})
+export class CreateDialog {
+  constructor(
+    public dialogRef: MatDialogRef<CreateDialog>,
+    @Inject(MAT_DIALOG_DATA) public data: DialogData,
+  ) {}
+
+  onNoClick(): void {
+    this.dialogRef.close();
+  }
+}
+
+@Component({
+  selector: 'dialog-overview-edit-dialog',
+  templateUrl: '../dialogs/update/update.component.html',
+})
+export class EditDialog {
+  constructor(
+    public dialogRef: MatDialogRef<EditDialog>,
+    @Inject(MAT_DIALOG_DATA) public data: DialogData,
+  ) {}
+
+  onNoClick(): void {
+    this.dialogRef.close();
+  }
+}

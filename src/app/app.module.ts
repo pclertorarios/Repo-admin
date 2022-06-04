@@ -20,10 +20,8 @@ import { MatMenuModule } from '@angular/material/menu';
 import { RepositorioComponent } from './repositorio/repositorio.component';
 import { AdminUserComponent } from './admin-user/admin-user.component';
 import { HttpClientModule } from '@angular/common/http';
-import { BmlControlComponent } from './bml-control/bml-control.component';
-import { CreateComponent } from './dialogs/create/create.component';
-import { UpdateComponent } from './dialogs/update/update.component';
-import { FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { BmlControlComponent, CreateDialog, EditDialog } from './bml-control/bml-control.component';
+import { FormGroup, ReactiveFormsModule, FormsModule  } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -34,8 +32,8 @@ import { FormGroup, ReactiveFormsModule } from '@angular/forms';
     AdminUserComponent,
     BmlControlComponent,
     AppComponent,
-    CreateComponent,
-    UpdateComponent,
+    CreateDialog,
+    EditDialog
   ],
   imports: [
     BrowserModule,
@@ -53,6 +51,7 @@ import { FormGroup, ReactiveFormsModule } from '@angular/forms';
     MatMenuModule,
     HttpClientModule,
     ReactiveFormsModule, 
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

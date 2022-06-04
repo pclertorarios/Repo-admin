@@ -17,7 +17,11 @@
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
     </mat-toolbar>
-    <ng-container *ngFor="let category of files.categories; let i = index">
+    <button mat-flat-button (click)="showAddDialog({type: 'Categoria', position: []})"  style="margin: 10px;" color="primary">         
+      <mat-icon>add</mat-icon>
+      Agregar Categoria
+    </button>
+    <ng-container *ngFor="let category of files.categories; let categoryPos = index">
       <mat-expansion-panel (opened)="panelCategoryState = true"
                                 (closed)="panelCategoryState = false">
      <mat-expansion-panel-header>
@@ -26,26 +30,27 @@
         <mat-icon class="add"
                   aria-hidden="false"
                   aria-label="Example home icon"
+                  (click)="showAddDialog({type: 'SubCategoria', position: [categoryPos]})"
                   style="cursor: pointer;">
                      add
         </mat-icon>
         <mat-icon id="update"
         aria-hidden="false"
         aria-label="Example home icon"
-    
+        (click)="showEditDialog({type: 'Categoria', position: [categoryPos], name: category.name})"
         style="cursor: pointer;">
             autorenew
         </mat-icon>
         <mat-icon id="remove"
         aria-hidden="false"
         aria-label="Example home icon"
-        (click)="DeleteCategory({category,i})"
+        (click)="deleteCategory(categoryPos)"
         style="cursor: pointer;">
                      remove
 </mat-icon>
       </div>
      </mat-expansion-panel-header>
-     <ng-container *ngFor="let subcategory of category.subcategories; let subi = index" >
+     <ng-container *ngFor="let subcategory of category.subcategories; let subCategoryPos = index" >
       <mat-expansion-panel (opened)="panelCategoryState = true"
       (closed)="panelCategoryState = false">
         <mat-expansion-panel-header>
@@ -54,40 +59,40 @@
       <mat-icon class="add"
                 aria-hidden="false"
                 aria-label="Example home icon"
-               (click)="createControl({subcategory,subi,i})"
+                (click)="showAddDialog({type: 'Control', position: [categoryPos, subCategoryPos]})"
                 style="cursor: pointer;">
            add
       </mat-icon>
       <mat-icon id="update"
         aria-hidden="false"
         aria-label="Example home icon"
-    
+        (click)="showEditDialog({type: 'SubCategoria', position: [categoryPos, subCategoryPos], name: subcategory.shortName})"
         style="cursor: pointer;">
             autorenew
       </mat-icon>
       <mat-icon id="remove"
                  aria-hidden="false"
                  aria-label="Example home icon"
-                 (click)="DeleteSubcategory({subcategory,subi,i})"
+                 (click)="deleteSubcategory(categoryPos, subCategoryPos)"
                 style="cursor: pointer;">
           remove
 </mat-icon>
     </div>
         </mat-expansion-panel-header>
-  <ng-container *ngFor="let control of subcategory.controls; let coni = index">     
+  <ng-container *ngFor="let control of subcategory.controls; let controlPos = index">     
             <p>{{control.name}}</p>
             <div class="icon_container_control">
               <mat-icon id="update"
                 aria-hidden="false"
                 aria-label="Example home icon"
-                (click)="UpdateControl({control, coni, subi, i})"
+                (click)="showEditDialog({type: 'Control', position: [categoryPos, subCategoryPos, controlPos], name: control.name})"
                 style="cursor: pointer;">
                   autorenew
              </mat-icon>
               <mat-icon id="remove"
               aria-hidden="false"
               aria-label="Example home icon"
-              (click)="DeleteControl({control, coni, subi, i})"
+              (click)="deleteControl(categoryPos, subCategoryPos, controlPos)"
               style="cursor: pointer;">
                   remove
         </mat-icon>
