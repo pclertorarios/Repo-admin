@@ -1,0 +1,106 @@
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav #drawer class="sidenav" fixedInViewport>
+    <mat-toolbar>Secciones</mat-toolbar>
+    <mat-nav-list style="background-color:#e3f2fd;">
+      <a mat-list-item href="index.html">Control BML</a>
+      <a mat-list-item href="repositorio.component.html">Repositorio</a>
+      <a mat-list-item href="admin-user.component.html">Administrar Perfil</a>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar color="primary">
+      <button
+        type="button"
+        aria-label="Toggle sidenav"
+        mat-icon-button
+        (click)="drawer.toggle()">
+        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+      </button>
+    </mat-toolbar>
+    <button mat-flat-button (click)="showAddDialog({type: 'Categoria', position: []})"  style="margin: 10px;" color="primary">         
+      <mat-icon>add</mat-icon>
+      Agregar Categoria
+    </button>
+    <ng-container *ngFor="let category of files.categories; let categoryPos = index">
+      <mat-expansion-panel (opened)="panelCategoryState = true"
+                                (closed)="panelCategoryState = false">
+     <mat-expansion-panel-header>
+      <mat-panel-title>{{category.name}}</mat-panel-title>
+      <div class="icon_container">
+        <mat-icon class="add"
+                  aria-hidden="false"
+                  aria-label="Example home icon"
+                  (click)="showAddDialog({type: 'SubCategoria', position: [categoryPos]})"
+                  style="cursor: pointer;">
+                     add
+        </mat-icon>
+        <mat-icon id="update"
+        aria-hidden="false"
+        aria-label="Example home icon"
+        (click)="showEditDialog({type: 'Categoria', position: [categoryPos], name: category.name})"
+        style="cursor: pointer;">
+            autorenew
+        </mat-icon>
+        <mat-icon id="remove"
+        aria-hidden="false"
+        aria-label="Example home icon"
+        (click)="deleteCategory(categoryPos)"
+        style="cursor: pointer;">
+                     remove
+</mat-icon>
+      </div>
+     </mat-expansion-panel-header>
+     <ng-container *ngFor="let subcategory of category.subcategories; let subCategoryPos = index" >
+      <mat-expansion-panel (opened)="panelCategoryState = true"
+      (closed)="panelCategoryState = false">
+        <mat-expansion-panel-header>
+          <mat-panel-title>{{subcategory.shortName}}</mat-panel-title>
+    <div class="icon_container">
+      <mat-icon class="add"
+                aria-hidden="false"
+                aria-label="Example home icon"
+                (click)="showAddDialog({type: 'Control', position: [categoryPos, subCategoryPos]})"
+                style="cursor: pointer;">
+           add
+      </mat-icon>
+      <mat-icon id="update"
+        aria-hidden="false"
+        aria-label="Example home icon"
+        (click)="showEditDialog({type: 'SubCategoria', position: [categoryPos, subCategoryPos], name: subcategory.shortName})"
+        style="cursor: pointer;">
+            autorenew
+      </mat-icon>
+      <mat-icon id="remove"
+                 aria-hidden="false"
+                 aria-label="Example home icon"
+                 (click)="deleteSubcategory(categoryPos, subCategoryPos)"
+                style="cursor: pointer;">
+          remove
+</mat-icon>
+    </div>
+        </mat-expansion-panel-header>
+  <ng-container *ngFor="let control of subcategory.controls; let controlPos = index">     
+            <p>{{control.name}}</p>
+            <div class="icon_container_control">
+              <mat-icon id="update"
+                aria-hidden="false"
+                aria-label="Example home icon"
+                (click)="showEditDialog({type: 'Control', position: [categoryPos, subCategoryPos, controlPos], name: control.name})"
+                style="cursor: pointer;">
+                  autorenew
+             </mat-icon>
+              <mat-icon id="remove"
+              aria-hidden="false"
+              aria-label="Example home icon"
+              (click)="deleteControl(categoryPos, subCategoryPos, controlPos)"
+              style="cursor: pointer;">
+                  remove
+        </mat-icon>
+            </div>
+       </ng-container>
+      </mat-expansion-panel>
+    </ng-container> 
+    </mat-expansion-panel>
+    </ng-container>
+  </mat-sidenav-content>
+</mat-sidenav-container>

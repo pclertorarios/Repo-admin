@@ -29,8 +29,8 @@ import { MatToolbarModule } from '@angular/material/toolbar';
     MatListModule,
     MatMenuModule,
     MatSelectModule,
-    MatSidenavModule,
     MatTableModule,
+    MatSidenavModule,
     MatToolbarModule
   ]
 })

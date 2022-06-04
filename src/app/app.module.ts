@@ -1,9 +1,9 @@
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule, FormGroup } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { LayoutModule } from '@angular/cdk/layout';
 import { MaterialModule } from './material/material.module';
@@ -20,18 +20,20 @@ import { DialogComponent } from './components/dialog/dialog.component';
 import { EditUserComponent } from './dialogs/edit-user/edit-user.component';
 import { MatButtonToggleModule } from "@angular/material/button-toggle";
 import { MAT_DIALOG_DATA, MatDialogModule, MatDialogRef } from "@angular/material/dialog";
-
-
+import { BmlControlComponent, CreateDialog, EditDialog } from './pages/bml-control/bml-control.component';
 
 @NgModule({
   declarations: [
-    AppComponent,
+    BmlControlComponent,
     NavigationComponent,
     DashboardComponent,
     RepositorioComponent,
     AdminUserComponent,
     DialogComponent,
     EditUserComponent,
+    AppComponent,
+    CreateDialog,
+    EditDialog
   ],
   imports: [
     ReactiveFormsModule,
@@ -45,6 +47,9 @@ import { MAT_DIALOG_DATA, MatDialogModule, MatDialogRef } from "@angular/materia
     MatButtonToggleModule,
     MatDialogModule,
     FormsModule,
+    HttpClientModule,
+    ReactiveFormsModule,
+    FormsModule
   ],
   providers: [{
     provide: MAT_DIALOG_DATA,
