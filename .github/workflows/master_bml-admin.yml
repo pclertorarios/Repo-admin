@@ -51,6 +51,5 @@ jobs:
         uses: azure/webapps-deploy@v2
         with:
           app-name: 'BML-Admin'
-          slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_7EFC26A1692A44D0AEB108361D63954D }}
-          package: .
+          publish-profile: $
+          package: ./dist/BML-Admin
