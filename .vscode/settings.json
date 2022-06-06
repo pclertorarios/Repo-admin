@@ -1,0 +1,4 @@
+{
+    "appService.defaultWebAppToDeploy": "/subscriptions/6c12b563-d52b-4876-b742-e5ac4543d53e/microsoft.web/sites/subscriptions/6c12b563-d52b-4876-b742-e5ac4543d53e/resourceGroups/AdminFront/providers/Microsoft.Web/sites/BMLADMIN",
+    "appService.deploySubpath": "dist\\dashboard"
+}
