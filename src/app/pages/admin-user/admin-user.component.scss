@@ -5,7 +5,7 @@
   padding: 40px;
 }
 .fondo2{
-  width: 87%;
+  width: 97%;
   height: 80%;
   background: #3C0D77;
   border-radius: 20px;
@@ -22,6 +22,16 @@ p{
   color: #F2994A;
   height: 21px;
 }
+
+.mat-raised-button
+{
+  height: justify-content;
+  width: auto;
+  padding: auto;
+  
+
+}
+
 h2{
   height: fit-content;
   width: 100px;
@@ -42,14 +52,17 @@ h2{
   padding: 0 15px;
 }
 button{
-  width: 90 px;
-  height: 100px;
+  width: auto;
+  height: auto;
   padding: auto;
   background: #F2994A;
   color: white;
 }
 button:first-child{
   margin-left: 200px;
+  width: auto;
+  height: auto;
+  padding: auto;
 }
 .layout{
   width: 200px;
