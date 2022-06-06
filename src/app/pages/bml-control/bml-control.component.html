@@ -1,22 +1,3 @@
-<mat-sidenav-container class="sidenav-container">
-  <mat-sidenav #drawer class="sidenav" fixedInViewport>
-    <mat-toolbar>Secciones</mat-toolbar>
-    <mat-nav-list style="background-color:#e3f2fd;">
-      <a mat-list-item href="index.html">Control BML</a>
-      <a mat-list-item href="repositorio.component.html">Repositorio</a>
-      <a mat-list-item href="admin-user.component.html">Administrar Perfil</a>
-    </mat-nav-list>
-  </mat-sidenav>
-  <mat-sidenav-content>
-    <mat-toolbar color="primary">
-      <button
-        type="button"
-        aria-label="Toggle sidenav"
-        mat-icon-button
-        (click)="drawer.toggle()">
-        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
-      </button>
-    </mat-toolbar>
     <button mat-flat-button (click)="showAddDialog({type: 'Categoria', position: []})"  style="margin: 10px;" color="primary">         
       <mat-icon>add</mat-icon>
       Agregar Categoria
@@ -102,5 +83,3 @@
     </ng-container> 
     </mat-expansion-panel>
     </ng-container>
-  </mat-sidenav-content>
-</mat-sidenav-container>
