@@ -14,10 +14,10 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@master
 
       - name: Set up Node.js version
-        uses: actions/setup-node@master
+        uses: actions/setup-node@v1
         with:
           node-version: '16.x'
 
@@ -52,4 +52,4 @@ jobs:
         with:
           app-name: 'RepoAdminFrontend'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_939A718A3AA8464391235D6EDF08A202 }}
-          package: ./dist/RepoAdminFrontend
+          package: ./dist/dashboard
