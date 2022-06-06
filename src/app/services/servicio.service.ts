@@ -12,7 +12,7 @@ import {MatDialogModule} from '@angular/material/dialog'
 })
 export class ServicioService {
 
-  private files ='https://tesis-pry-api.azurewebsites.net/api'
+  private files ='https://tesis-pry-api.azurewebsites.net/api/global-form/default'
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json'
@@ -27,7 +27,7 @@ export class ServicioService {
   }
 
   updateGlobalForm(body:any){
-    const url: string = `http://localhost:3000/api/global-form/update-default`;
+    const url: string = `https://tesis-pry-api.azurewebsites.net/api/global-form/update-default`;
     return this.http.put<any>(url, body).subscribe(response =>{console.log(response)});
 
   }
