@@ -50,6 +50,6 @@ jobs:
         id: deploy-to-webapp
         uses: azure/webapps-deploy@v2
         with:
-          app-name: 'RepoAdminFrontend'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_939A718A3AA8464391235D6EDF08A202 }}
+          app-name: 'dashboard'
+          publish-profile: $
           package: ./dist/dashboard
