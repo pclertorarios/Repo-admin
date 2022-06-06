@@ -9,7 +9,7 @@ import {UpdateUserInterface} from "../models/UpdateUser.interface";
   providedIn: 'root'
 })
 export class UsersService{
-  readonly ROOT_URL ='http://localhost:3000/api'
+  readonly ROOT_URL ='https://tesis-pry-api.azurewebsites.net/api'
   httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json' })};
   constructor(private http: HttpClient) {
   }

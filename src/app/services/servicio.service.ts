@@ -12,7 +12,7 @@ import {MatDialogModule} from '@angular/material/dialog'
 })
 export class ServicioService {
 
-  private files ='http://localhost:3000/api/global-form/default'
+  private files ='https://tesis-pry-api.azurewebsites.net/api'
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json'
